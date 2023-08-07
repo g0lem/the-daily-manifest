@@ -1,0 +1,3 @@
+
+cd server
+bun start
