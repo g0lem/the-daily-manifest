@@ -1,7 +1,28 @@
 import './style.css'
 
 
+class Vec2 {
+  public x : number;
+  public y : number;
+
+  constructor(x : number, y : number) {
+    this.x = x;
+    this.y = y;
+  }
+
+}
+
+
 const canvas : HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('app')!;
+
+const adjustResolution : (element: HTMLCanvasElement, size : Vec2) => void = (element: HTMLCanvasElement, size : Vec2) => {
+  element.width = size.x;
+  element.height = size.y;
+}
+
+
+
+
 
 const context : CanvasRenderingContext2D = canvas.getContext('2d')!;
 
