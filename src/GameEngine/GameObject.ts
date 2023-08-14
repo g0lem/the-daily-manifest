@@ -31,17 +31,17 @@ export class GameObject {
     listenForKeyPresses = () => {
         document.addEventListener("keydown", (event) => {
             if (event.key === 'w') {
-                this.position.y-=8;
+                this.position.y -= 8;
             }
             if (event.key === 's') {
-                this.position.y+=8;
+                this.position.y += 8;
             }
 
             if (event.key === 'a') {
-                this.position.x-=8;
+                this.position.x -= 8;
             }
             if (event.key === 'd') {
-                this.position.x+=8;
+                this.position.x += 8;
             }
         })
 
