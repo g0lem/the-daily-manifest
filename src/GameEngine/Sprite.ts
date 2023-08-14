@@ -3,17 +3,14 @@ import { Vec2 } from "./Vec2";
 
 
 export class Sprite {
-
-    public position: Vec2;
     public size: Vec2;
     public resource: Resource;
     public image: ImageBitmap | null = null;
 
     public hasLoaded: Boolean = false;
 
-    constructor(resource: Resource, size: Vec2, position: Vec2) {
+    constructor(resource: Resource, size: Vec2) {
         this.resource = resource;
-        this.position = position;
         this.size = size;
 
         this.resourceProcessingInterval();
@@ -34,11 +31,11 @@ export class Sprite {
     }
 
 
-    render = (context: CanvasRenderingContext2D) => {
+    render = (context: CanvasRenderingContext2D, position: Vec2) => {
         if(!this.hasLoaded || !this.image) {
             return;
         }
-        context.drawImage(this.image, 0, 0);
+        context.drawImage(this.image, position.x, position.y, this.size.x, this.size.y);
     }
 
 

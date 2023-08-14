@@ -1,4 +1,4 @@
-import { Resource } from './GameEngine/Resource';
+import { GameObject } from './GameEngine/GameObject';
 import { ResourceLoader } from './GameEngine/ResourceLoader';
 import { Sprite } from './GameEngine/Sprite';
 import { Vec2 } from './GameEngine/Vec2';
@@ -28,12 +28,7 @@ const resourceLoader = new ResourceLoader([
 
 resourceLoader.fetchAllResources();
 
-
-const spriteMap = resourceLoader.resourceList.map(res=> {
-    const sprite = new Sprite(res, new Vec2(0,0), new Vec2(0,0));
-    return sprite;
-})
-
+const gameObj = new GameObject(resourceLoader, 'vim', new Vec2(0,0));
 
 const context : CanvasRenderingContext2D = canvas.getContext('2d')!;
 
@@ -51,10 +46,7 @@ const drawLine : ()=>void = () => {
   context.moveTo(0,0);
   context.lineTo(300,300);
   context.stroke();
-
-  spriteMap.forEach(sprite=> {
-    sprite.render(context);
-  })
+  gameObj.render(context);
   counter++;
 }
 
