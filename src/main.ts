@@ -1,6 +1,5 @@
 import { GameObject } from './GameEngine/GameObject';
 import { ResourceLoader } from './GameEngine/ResourceLoader';
-import { Sprite } from './GameEngine/Sprite';
 import { Vec2 } from './GameEngine/Vec2';
 
 

@@ -30,20 +30,19 @@ export class GameObject {
 
     listenForKeyPresses = () => {
         document.addEventListener("keydown", (event) => {
-            if (event.code === 'KeyW') {
-              this.position.y--;
+            if (event.key === 'w') {
+                this.position.y-=8;
             }
-            if (event.code === 'KeyS') {
-                this.position.y++;
+            if (event.key === 's') {
+                this.position.y+=8;
             }
 
-            if (event.code === 'KeyA') {
-                this.position.x--;
+            if (event.key === 'a') {
+                this.position.x-=8;
             }
-            if (event.code === 'KeyD') {
-                this.position.x++;
+            if (event.key === 'd') {
+                this.position.x+=8;
             }
-            // do something
         })
 
     }
