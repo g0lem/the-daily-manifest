@@ -1,16 +1,7 @@
-import './style.css'
-
-
-class Vec2 {
-  public x : number;
-  public y : number;
-
-  constructor(x : number, y : number) {
-    this.x = x;
-    this.y = y;
-  }
-
-}
+import { Resource } from './GameEngine/Resource';
+import { ResourceLoader } from './GameEngine/ResourceLoader';
+import { Sprite } from './GameEngine/Sprite';
+import { Vec2 } from './GameEngine/Vec2';
 
 
 const canvas : HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('app')!;
@@ -21,7 +12,27 @@ const adjustResolution : (element: HTMLCanvasElement, size : Vec2) => void = (el
 }
 
 
+setTimeout(()=>{
+    adjustResolution(canvas, new Vec2(800,600));
+}, 1000);
 
+const resourceLoader = new ResourceLoader([
+    {
+        key: 'vim',
+        source: '/vim.png',
+        isCritical: false,
+        resourceBlob: new Blob(),
+        hasLoaded: false,
+    },
+]);
+
+resourceLoader.fetchAllResources();
+
+
+const spriteMap = resourceLoader.resourceList.map(res=> {
+    const sprite = new Sprite(res, new Vec2(0,0), new Vec2(0,0));
+    return sprite;
+})
 
 
 const context : CanvasRenderingContext2D = canvas.getContext('2d')!;
@@ -40,6 +51,10 @@ const drawLine : ()=>void = () => {
   context.moveTo(0,0);
   context.lineTo(300,300);
   context.stroke();
+
+  spriteMap.forEach(sprite=> {
+    sprite.render(context);
+  })
   counter++;
 }
 
