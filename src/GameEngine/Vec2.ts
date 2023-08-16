@@ -37,4 +37,19 @@ export class Vec2 {
         return this;
     }
 
+    isBigger(vectorToCompare: Vec2) {
+        return vectorToCompare.x <= this.x && vectorToCompare.y <= this.y;
+    }
+
+    isSmaller(vectorToCompare: Vec2) {
+        return vectorToCompare.x >= this.x && vectorToCompare.y >= this.y;
+    }
+
+    isContained(vectorToCompare: Vec2, sizeVector: Vec2,) {
+        const vectCopy = new Vec2(vectorToCompare.x, vectorToCompare.y);
+        vectCopy.add(sizeVector);
+
+        return vectorToCompare.isSmaller(this) && vectCopy.isBigger(this);s
+    }
+
 }

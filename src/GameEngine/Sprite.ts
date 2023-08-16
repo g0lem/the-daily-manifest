@@ -1,5 +1,6 @@
 import { Resource } from "./Resource";
 import { Vec2 } from "./Vec2";
+import { getContext } from "./utils/canvas";
 
 
 export class Sprite {
@@ -31,10 +32,11 @@ export class Sprite {
     }
 
 
-    render = (context: CanvasRenderingContext2D, position: Vec2) => {
+    render = (position: Vec2) => {
         if(!this.hasLoaded || !this.image) {
             return;
         }
+        const context = getContext();
         context.drawImage(this.image, position.x, position.y, this.size.x, this.size.y);
     }
 

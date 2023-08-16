@@ -1,7 +1,9 @@
+import { Entities } from './GameEngine/Entities';
 import { GameObject } from './GameEngine/GameObject';
 import { ResourceLoader } from './GameEngine/ResourceLoader';
 import { Text } from './GameEngine/Text';
 import { Vec2 } from './GameEngine/Vec2';
+import { EventController } from './GameEngine/controllers/EventController';
 
 
 const canvas : HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('app')!;
@@ -29,6 +31,8 @@ const resourceLoader = new ResourceLoader([
 resourceLoader.fetchAllResources();
 
 const gameObj = new GameObject(resourceLoader, 'vim', new Vec2(0,0));
+const entities = new Entities();
+entities.push(gameObj);
 
 const context : CanvasRenderingContext2D = canvas.getContext('2d')!;
 
@@ -41,10 +45,11 @@ context.strokeText("Hello World", 10, 50);
 
 const fontTest = new Text(new Vec2(20, 20), "SUP MAN?");
 
+const eventController = new EventController(entities);
 
 const drawLine : ()=>void = () => {
   if(Date.now() - timer > 1000) {
-    console.log(counter);
+    // console.log(counter);
     timer = Date.now();
     counter = 0;
   }
@@ -53,8 +58,8 @@ const drawLine : ()=>void = () => {
   context.moveTo(0,0);
   context.lineTo(300,300);
   context.stroke();
-  gameObj.render(context);
-  fontTest.render(context);
+  entities.render();
+  fontTest.render();
   counter++;
 }
 

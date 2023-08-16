@@ -47,11 +47,15 @@ export class GameObject {
 
     }
 
+    onClick = () => {
+        alert('here');
+    }
 
-    render(context: CanvasRenderingContext2D) {
+
+    render() {
         if(!this.sprite) {
             return;
         }
-        this.sprite.render(context, this.position);
+        this.sprite.render(this.position);
     }
 }
