@@ -51,6 +51,10 @@ export class GameObject {
         alert('here');
     }
 
+    onHover = () => {
+        alert('hover');
+    }
+
 
     render() {
         if(!this.sprite) {

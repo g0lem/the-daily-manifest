@@ -9,10 +9,11 @@ export class EventController {
     constructor(entities : Entities) {
         const canvasElement = getCanvasHTMLElement();
         canvasElement.addEventListener('mousedown', this.handleClick)
+        canvasElement.addEventListener('mousemove', this.handleHover)
         this.entities = entities;
     }
 
-    handleClick = (mouseEvent: MouseEvent) => {
+    findEntityByMousePosition (mouseEvent: MouseEvent) {
         const {
             clientX,
             clientY,
@@ -20,13 +21,28 @@ export class EventController {
 
         const mousePosition : Vec2 = new Vec2(clientX, clientY);
 
-        const foundEntitiy : GameObject = this.entities.findByCoords(mousePosition)!;
+        return this.entities.findByCoords(mousePosition)!;
+    }
 
-        if(foundEntitiy) {
+    handleClick = (mouseEvent: MouseEvent) => {
+        const foundEntity = this.findEntityByMousePosition(mouseEvent);
+
+        if(foundEntity) {
             console.log('found it')
-            foundEntitiy.onClick();
+            foundEntity.onClick();
         }
     }
+
+    handleHover = (mouseEvent: MouseEvent) => {
+        const foundEntity = this.findEntityByMousePosition(mouseEvent);
+
+        if(foundEntity) {
+            console.log('found it')
+            foundEntity.onHover();
+        }
+    }
+
+    
 
 
     destory() {
