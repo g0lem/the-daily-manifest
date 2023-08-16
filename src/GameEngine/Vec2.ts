@@ -49,7 +49,7 @@ export class Vec2 {
         const vectCopy = new Vec2(vectorToCompare.x, vectorToCompare.y);
         vectCopy.add(sizeVector);
 
-        return vectorToCompare.isSmaller(this) && vectCopy.isBigger(this);s
+        return vectorToCompare.isSmaller(this) && vectCopy.isBigger(this);
     }
 
 }
