@@ -41,7 +41,16 @@ export class Sprite {
         }
         const context = getContext();
         const frame = this.currentAnimation.getFrame();
-        context.drawImage(this.image, frame.currentFramePosition.x, frame.currentFramePosition.y, frame.frameSize.x, frame.frameSize.y,position.x, position.y, this.size.x, this.size.y);
+        context.drawImage(
+            this.image, 
+            frame.currentFramePosition.x, 
+            frame.currentFramePosition.y, 
+            frame.frameSize.x, 
+            frame.frameSize.y,position.x, 
+            position.y, 
+            this.size.x, 
+            this.size.y
+        );
 
         this.currentAnimation.updateFrame();
     }
