@@ -52,4 +52,18 @@ export class Vec2 {
         return vectorToCompare.isSmaller(this) && vectCopy.isBigger(this);
     }
 
+    copy() : Vec2 {
+        const _copy = new Vec2(this.x, this.y);
+        return _copy;
+    }
+
+    getBase() : Vec2 {
+        const baseX : number = !!this.x ? 1 : 0;
+        const baseY : number = !!this.y ? 1 : 0;
+
+        const base = new Vec2(baseX, baseY);
+
+        return base;
+    }
+
 }

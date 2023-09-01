@@ -25,12 +25,21 @@ const resourceLoader = new ResourceLoader([
         isCritical: false,
         resourceBlob: new Blob(),
         hasLoaded: false,
+        size: new Vec2(16,16),
     },
+    {
+      key: 'pokemon',
+      source: '/pokemon.png',
+      isCritical: false,
+      resourceBlob: new Blob(),
+      hasLoaded: false,
+      size: new Vec2(64,64),
+  },
 ]);
 
 resourceLoader.fetchAllResources();
 
-const gameObj = new GameObject(resourceLoader, 'vim', new Vec2(0,0));
+const gameObj = new GameObject(resourceLoader, 'pokemon', new Vec2(0,0));
 const entities = new Entities();
 entities.push(gameObj);
 
@@ -49,7 +58,7 @@ const eventController = new EventController(entities);
 
 const drawLine : ()=>void = () => {
   if(Date.now() - timer > 1000) {
-    // console.log(counter);
+    console.log(counter);
     timer = Date.now();
     counter = 0;
   }
@@ -65,4 +74,6 @@ const drawLine : ()=>void = () => {
 
 setInterval(()=> {
   drawLine();
-},0)
+},1)
+
+window.addEventListener("beforeunload", ()=>eventController.destroy());

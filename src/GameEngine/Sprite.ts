@@ -1,3 +1,4 @@
+import { Animation } from "./Animation";
 import { Resource } from "./Resource";
 import { Vec2 } from "./Vec2";
 import { getContext } from "./utils/canvas";
@@ -7,12 +8,13 @@ export class Sprite {
     public size: Vec2;
     public resource: Resource;
     public image: ImageBitmap | null = null;
+    public currentAnimation : Animation = new Animation(new Vec2(0,0), new Vec2(64,64));
 
     public hasLoaded: Boolean = false;
 
-    constructor(resource: Resource, size: Vec2) {
+    constructor(resource: Resource) {
         this.resource = resource;
-        this.size = size;
+        this.size = resource.size;
 
         this.resourceProcessingInterval();
     }
@@ -37,7 +39,10 @@ export class Sprite {
             return;
         }
         const context = getContext();
-        context.drawImage(this.image, position.x, position.y, this.size.x, this.size.y);
+        const frame = this.currentAnimation.getFrame();
+        context.drawImage(this.image, frame.currentFramePosition.x, frame.currentFramePosition.y, frame.frameSize.x, frame.frameSize.y,position.x, position.y, this.size.x, this.size.y);
+
+        this.currentAnimation.updateFrame();
     }
 
 

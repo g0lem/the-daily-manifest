@@ -25,7 +25,7 @@ export class GameObject {
         if(!resource) {
             return;
         }
-        return new Sprite(resource, new Vec2(16,16));
+        return new Sprite(resource);
     }
 
     listenForKeyPresses = () => {

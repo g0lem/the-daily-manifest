@@ -44,7 +44,7 @@ export class EventController {
     
 
 
-    destory() {
+    destroy() {
         const canvasElement = getCanvasHTMLElement();
         canvasElement.removeEventListener('mousedown', this.handleClick)
     }
