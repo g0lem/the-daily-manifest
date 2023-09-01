@@ -67,11 +67,11 @@ export class GameObject {
     }
 
     onClick = () => {
-        alert('here');
+        console.log('click');
     }
 
     onHover = () => {
-        alert('hover');
+        console.log('hover');
     }
 
 
