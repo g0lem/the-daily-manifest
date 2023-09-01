@@ -9,6 +9,7 @@ export class EventController {
         const canvasElement = getCanvasHTMLElement();
         canvasElement.addEventListener('mousedown', this.handleClick)
         canvasElement.addEventListener('mousemove', this.handleHover)
+        canvasElement.addEventListener('wheel', this.handleScroll);
         this.entities = entities;
     }
 
@@ -27,7 +28,6 @@ export class EventController {
         const foundEntity = this.findEntityByMousePosition(mouseEvent);
 
         if(foundEntity) {
-            console.log('found it')
             foundEntity.onClick();
         }
     }
@@ -36,13 +36,17 @@ export class EventController {
         const foundEntity = this.findEntityByMousePosition(mouseEvent);
 
         if(foundEntity) {
-            console.log('found it')
             foundEntity.onHover();
         }
     }
 
-    
+    handleScroll = (mouseEvent: MouseEvent) => {
+        const foundEntity = this.findEntityByMousePosition(mouseEvent);
 
+        if(foundEntity) {
+            foundEntity.onScroll();
+        }
+    }
 
     destroy() {
         const canvasElement = getCanvasHTMLElement();

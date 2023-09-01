@@ -34,7 +34,7 @@ const resourceLoader = new ResourceLoader([
       resourceBlob: new Blob(),
       hasLoaded: false,
       size: new Vec2(64,64),
-  },
+    },
 ]);
 
 resourceLoader.fetchAllResources();

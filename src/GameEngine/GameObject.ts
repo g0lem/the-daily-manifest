@@ -75,6 +75,10 @@ export class GameObject {
     }
 
 
+    onScroll = () => {
+        console.log('scroll');
+    }
+
     render() {
         if(!this.sprite) {
             return;
