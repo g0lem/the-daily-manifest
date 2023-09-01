@@ -12,9 +12,10 @@ export class Sprite {
 
     public hasLoaded: Boolean = false;
 
-    constructor(resource: Resource) {
+    constructor(resource: Resource, animation: Animation) {
         this.resource = resource;
         this.size = resource.size;
+        this.currentAnimation = animation;
 
         this.resourceProcessingInterval();
     }
