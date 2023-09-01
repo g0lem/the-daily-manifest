@@ -58,7 +58,7 @@ const eventController = new EventController(entities);
 
 const drawLine : ()=>void = () => {
   if(Date.now() - timer > 1000) {
-    console.log(counter);
+    // console.log(counter);
     timer = Date.now();
     counter = 0;
   }
