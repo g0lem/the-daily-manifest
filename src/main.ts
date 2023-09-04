@@ -37,23 +37,13 @@ const resourceLoader = new ResourceLoader([
       hasLoaded: false,
       size: new Vec2(64,64),
     },
-    {
-      key: 'scroll',
-      source: '/scroll.jpg',
-      isCritical: false,
-      resourceBlob: new Blob(),
-      hasLoaded: false,
-      size: new Vec2(600, 449),
-    },
 ]);
 
 resourceLoader.fetchAllResources();
 
 const gameObj = new PlayerObject(resourceLoader, 'pokemon', new Vec2(0,0), new Animation(new Vec2(0,0), new Vec2(64,64)));
-const gameObj2 = new GameObject(resourceLoader, 'scroll', new Vec2(0,0), null);
 const gameObj3 = new GameObject(resourceLoader, 'vim', new Vec2(50,50), null);
 const entities = new Entities();
-entities.push(gameObj2);
 entities.push(gameObj3);
 entities.push(gameObj);
 
