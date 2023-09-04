@@ -1,7 +1,7 @@
+import { Animation } from "./Animation";
 import { ResourceLoader } from "./ResourceLoader";
 import { Sprite } from "./Sprite";
 import { Vec2 } from "./Vec2";
-
 
 
 export class GameObject {
@@ -9,6 +9,7 @@ export class GameObject {
     public spriteName: string;
     public position: Vec2;
     public resourceLoader: ResourceLoader;
+    public animation: Animation = new Animation(new Vec2(0,0), new Vec2(64,64));
 
     constructor(resourceLoader: ResourceLoader, spriteName: string, position: Vec2) {
         this.position = position;
@@ -25,33 +26,63 @@ export class GameObject {
         if(!resource) {
             return;
         }
-        return new Sprite(resource, new Vec2(16,16));
+        return new Sprite(resource, this.animation);
     }
 
     listenForKeyPresses = () => {
         document.addEventListener("keydown", (event) => {
             if (event.key === 'w') {
                 this.position.y -= 8;
+                setTimeout(() => {
+                    this.sprite!.currentAnimation.frameStart = new Vec2(0,3);
+                    this.sprite!.currentAnimation.amountOfFrames = new Vec2(3,0);
+                }, 0);
             }
             if (event.key === 's') {
                 this.position.y += 8;
+
+                setTimeout(() => {
+                    this.sprite!.currentAnimation.frameStart = new Vec2(0,0);
+                    this.sprite!.currentAnimation.amountOfFrames = new Vec2(3,0);
+                }, 0);
             }
 
             if (event.key === 'a') {
                 this.position.x -= 8;
+
+                setTimeout(() => {
+                    this.sprite!.currentAnimation.frameStart = new Vec2(0,1);
+                    this.sprite!.currentAnimation.amountOfFrames = new Vec2(3,0);
+                }, 0);
             }
             if (event.key === 'd') {
                 this.position.x += 8;
+                setTimeout(() => {
+                    this.sprite!.currentAnimation.frameStart = new Vec2(0,2);
+                    this.sprite!.currentAnimation.amountOfFrames = new Vec2(3,0);
+                }, 0);
             }
         })
 
     }
 
+    onClick = () => {
+        console.log('click');
+    }
 
-    render(context: CanvasRenderingContext2D) {
+    onHover = () => {
+        console.log('hover');
+    }
+
+
+    onScroll = () => {
+        console.log('scroll');
+    }
+
+    render() {
         if(!this.sprite) {
             return;
         }
-        this.sprite.render(context, this.position);
+        this.sprite.render(this.position);
     }
 }

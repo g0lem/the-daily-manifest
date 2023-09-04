@@ -1,4 +1,5 @@
 import { Vec2 } from "./Vec2";
+import { getContext } from "./utils/canvas";
 
 
 export class Text {
@@ -11,7 +12,8 @@ export class Text {
         this.text = text;
     }
 
-    render(context: CanvasRenderingContext2D) {
+    render() {
+        const context = getContext();
         context.font = this.font;
         context.strokeText(this.text , this.position.x, this.position.y); 
     }
