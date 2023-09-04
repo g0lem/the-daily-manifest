@@ -9,15 +9,14 @@ export class GameObject {
     public spriteName: string;
     public position: Vec2;
     public resourceLoader: ResourceLoader;
-    public animation: Animation = new Animation(new Vec2(0,0), new Vec2(64,64));
+    public animation: Animation | null = null;
 
-    constructor(resourceLoader: ResourceLoader, spriteName: string, position: Vec2) {
+    constructor(resourceLoader: ResourceLoader, spriteName: string, position: Vec2, animation: Animation | null) {
         this.position = position;
         this.resourceLoader = resourceLoader;
         this.spriteName = spriteName;
+        this.animation = animation;
         this.sprite = this.generateSprite();
-
-        this.listenForKeyPresses();
     }
 
     generateSprite = () : Sprite | void => {
@@ -30,40 +29,6 @@ export class GameObject {
     }
 
     listenForKeyPresses = () => {
-        document.addEventListener("keydown", (event) => {
-            if (event.key === 'w') {
-                this.position.y -= 8;
-                setTimeout(() => {
-                    this.sprite!.currentAnimation.frameStart = new Vec2(0,3);
-                    this.sprite!.currentAnimation.amountOfFrames = new Vec2(3,0);
-                }, 0);
-            }
-            if (event.key === 's') {
-                this.position.y += 8;
-
-                setTimeout(() => {
-                    this.sprite!.currentAnimation.frameStart = new Vec2(0,0);
-                    this.sprite!.currentAnimation.amountOfFrames = new Vec2(3,0);
-                }, 0);
-            }
-
-            if (event.key === 'a') {
-                this.position.x -= 8;
-
-                setTimeout(() => {
-                    this.sprite!.currentAnimation.frameStart = new Vec2(0,1);
-                    this.sprite!.currentAnimation.amountOfFrames = new Vec2(3,0);
-                }, 0);
-            }
-            if (event.key === 'd') {
-                this.position.x += 8;
-                setTimeout(() => {
-                    this.sprite!.currentAnimation.frameStart = new Vec2(0,2);
-                    this.sprite!.currentAnimation.amountOfFrames = new Vec2(3,0);
-                }, 0);
-            }
-        })
-
     }
 
     onClick = () => {
