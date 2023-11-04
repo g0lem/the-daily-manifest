@@ -1,11 +1,13 @@
 import { Animation } from './GameEngine/Animation';
 import { Entities } from './GameEngine/Entities';
 import { GameObject } from './GameEngine/GameObject';
+import { HealthBar } from './GameEngine/HealthBar';
 import { PlayerObject } from './GameEngine/PlayerObject';
 import { ResourceLoader } from './GameEngine/ResourceLoader';
 import { Text } from './GameEngine/Text';
 import { Vec2 } from './GameEngine/Vec2';
 import { EventController } from './GameEngine/controllers/EventController';
+import { Stats } from './RPGEngine/Stats';
 
 
 const canvas : HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('app')!;
@@ -41,14 +43,20 @@ const resourceLoader = new ResourceLoader([
 
 resourceLoader.fetchAllResources();
 
-const gameObj = new PlayerObject(resourceLoader, 'pokemon', new Vec2(0,0), new Animation(new Vec2(0,0), new Vec2(64,64)));
-const gameObj2 = new PlayerObject(resourceLoader, 'pokemon', new Vec2(100,100), new Animation(new Vec2(0,0), new Vec2(64,64)));
+const stats = new Stats();
+
+const gameObj = new PlayerObject(resourceLoader, 'pokemon', new Vec2(0,0), new Animation(new Vec2(0,0), new Vec2(64,64)), stats);
+const gameObj2 = new PlayerObject(resourceLoader, 'pokemon', new Vec2(100,100), new Animation(new Vec2(0,0), new Vec2(64,64)), stats);
 
 const gameObj3 = new GameObject(resourceLoader, 'vim', new Vec2(50,50), null);
+
+const healthBar = new HealthBar(stats);
+
 const entities = new Entities();
 entities.push(gameObj3);
 entities.push(gameObj2);
 entities.push(gameObj);
+entities.push(healthBar);
 
 const context : CanvasRenderingContext2D = canvas.getContext('2d')!;
 

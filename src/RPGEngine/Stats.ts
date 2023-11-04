@@ -25,4 +25,8 @@ export class Stats {
         this.health-=damage;
     }
 
+    public calculateHealthPercentage = () => {
+        return this.health/this.maxHealth;
+    }
+
 };
