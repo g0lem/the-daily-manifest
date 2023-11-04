@@ -20,6 +20,9 @@ export class PlayerObject extends GameObject {
 
     listenForKeyPresses = () => {
         document.addEventListener("keydown", (event) => {
+            if(this.stats.isDead()) {
+                return;
+            }
             if (event.key === 'w') {
                 this.position.y -= 8;
                 setTimeout(() => {

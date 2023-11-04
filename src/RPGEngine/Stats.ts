@@ -29,4 +29,8 @@ export class Stats {
         return this.health/this.maxHealth;
     }
 
+    public isDead = () => {
+        return this.health <= 0;
+    }
+
 };
