@@ -17,7 +17,7 @@ export class PlayerObject extends GameObject {
 
         this.stats = stats;
 
-        this.throttle = new Throttle(30);
+        this.throttle = new Throttle(10);
 
         this.listenForKeyPresses();
     }
@@ -25,15 +25,21 @@ export class PlayerObject extends GameObject {
 
     listenForKeyPresses = () => {
         document.addEventListener("keydown", (event) => {
-            this.throttle.startThrottle();
             this.throttle.setCallback(() => {
                 this.keyPressCallback(event);
             });
+            this.throttle.startThrottle();
+            this.throttle.clearThrottle();
         })
 
         document.addEventListener("keyup", (event) => {
+            this.stopAnimation();
             this.throttle.clearThrottle();
         })
+    }
+
+    stopAnimation = () => {
+        this.sprite!.currentAnimation!.amountOfFrames = new Vec2(0,0);
     }
 
     keyPressCallback = (event : KeyboardEvent) => {
@@ -64,7 +70,7 @@ export class PlayerObject extends GameObject {
         }
 
         if (event.key === 'x') {
-            this.stats.health -= 20;
+            this.stats.health -= 1;
         }
     };
 }
