@@ -1,10 +1,11 @@
 import { Animation } from "./Animation";
+import { RenderableObject } from "./RenderableObject";
 import { ResourceLoader } from "./ResourceLoader";
 import { Sprite } from "./Sprite";
 import { Vec2 } from "./Vec2";
 
 
-export class GameObject {
+export class GameObject implements RenderableObject {
     public sprite: Sprite | void;
     public spriteName: string;
     public position: Vec2;
