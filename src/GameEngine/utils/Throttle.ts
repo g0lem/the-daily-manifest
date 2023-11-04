@@ -21,13 +21,11 @@ export class Throttle {
 
     initializeThrottle = () => {
         if(this.shouldRun) {
-            console.log('here')
+            this.callback();
             this.shouldRun = false;
-            this.timeoutId = setTimeout(()=> {
-                console.log('here')
+            this.clearThrottle();
+            this.timeoutId = setInterval(()=> {
                 this.callback();
-                this.shouldRun = true;
-                this.initializeThrottle();
             }, this.msInterval)
         }
     }
