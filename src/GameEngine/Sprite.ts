@@ -8,11 +8,11 @@ export class Sprite {
     public size: Vec2;
     public resource: Resource;
     public image: ImageBitmap | null = null;
-    public currentAnimation : Animation = new Animation(new Vec2(0,0), new Vec2(64,64));
+    public currentAnimation : Animation | null = new Animation(new Vec2(0,0), new Vec2(64,64));
 
     public hasLoaded: Boolean = false;
 
-    constructor(resource: Resource, animation: Animation) {
+    constructor(resource: Resource, animation: Animation | null) {
         this.resource = resource;
         this.size = resource.size;
         this.currentAnimation = animation;
@@ -40,7 +40,17 @@ export class Sprite {
             return;
         }
         const context = getContext();
-        const frame = this.currentAnimation.getFrame();
+        if(!this.currentAnimation) {
+            context.drawImage(
+                this.image, 
+                position.x, 
+                position.y, 
+                this.size.x, 
+                this.size.y
+            );
+            return;
+        }
+        const frame = this.currentAnimation!.getFrame();
         context.drawImage(
             this.image, 
             frame.currentFramePosition.x, 
@@ -52,7 +62,7 @@ export class Sprite {
             this.size.y
         );
 
-        this.currentAnimation.updateFrame();
+        this.currentAnimation!.updateFrame();
     }
 
 

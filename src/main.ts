@@ -1,5 +1,7 @@
+import { Animation } from './GameEngine/Animation';
 import { Entities } from './GameEngine/Entities';
 import { GameObject } from './GameEngine/GameObject';
+import { PlayerObject } from './GameEngine/PlayerObject';
 import { ResourceLoader } from './GameEngine/ResourceLoader';
 import { Text } from './GameEngine/Text';
 import { Vec2 } from './GameEngine/Vec2';
@@ -39,8 +41,10 @@ const resourceLoader = new ResourceLoader([
 
 resourceLoader.fetchAllResources();
 
-const gameObj = new GameObject(resourceLoader, 'pokemon', new Vec2(0,0));
+const gameObj = new PlayerObject(resourceLoader, 'pokemon', new Vec2(0,0), new Animation(new Vec2(0,0), new Vec2(64,64)));
+const gameObj3 = new GameObject(resourceLoader, 'vim', new Vec2(50,50), null);
 const entities = new Entities();
+entities.push(gameObj3);
 entities.push(gameObj);
 
 const context : CanvasRenderingContext2D = canvas.getContext('2d')!;
