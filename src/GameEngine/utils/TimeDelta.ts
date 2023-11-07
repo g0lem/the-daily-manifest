@@ -13,10 +13,11 @@ export class TimeDelta {
     }
 
     executeWithTimeDelta = (callback: () => void, delta: number) => {
-        if(Date.now() - this.lastRegisteredTime > delta) {
-            this.setTime();
-            callback();
+        if(Date.now() - this.lastRegisteredTime < delta) {
+            return;
         } 
+        this.setTime();
+        callback();
     }
 
 }
