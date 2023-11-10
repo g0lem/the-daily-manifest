@@ -13,11 +13,14 @@ export class HealthBar implements RenderableObject {
     constructor(stats: Stats) {
         this.position = new Vec2(10,300);
 
-        this.size = (new Vec2(50, 5)).scale(20);
+        this.size = (new Vec2(50, 5));
 
         this.stats = stats;
     }
 
+    onClick = () => { console.log('click')};
+    onHover = () => {};
+    onScroll = () => {};
 
     render() {
         const context = getContext();

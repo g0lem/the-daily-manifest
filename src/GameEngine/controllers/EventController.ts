@@ -28,7 +28,7 @@ export class EventController {
         const foundEntity = this.findEntityByMousePosition(mouseEvent);
 
         if(foundEntity) {
-            foundEntity.onClick();
+            foundEntity!.onClick();
         }
     }
 
@@ -36,7 +36,7 @@ export class EventController {
         const foundEntity = this.findEntityByMousePosition(mouseEvent);
 
         if(foundEntity) {
-            foundEntity.onHover();
+            foundEntity!.onHover();
         }
     }
 
@@ -44,12 +44,14 @@ export class EventController {
         const foundEntity = this.findEntityByMousePosition(mouseEvent);
 
         if(foundEntity) {
-            foundEntity.onScroll();
+            foundEntity!.onScroll();
         }
     }
 
     destroy() {
         const canvasElement = getCanvasHTMLElement();
         canvasElement.removeEventListener('mousedown', this.handleClick)
+        canvasElement.removeEventListener('mousemove', this.handleHover)
+        canvasElement.removeEventListener('wheel', this.handleScroll);
     }
 }

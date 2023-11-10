@@ -45,11 +45,11 @@ export class Vec2 {
         return vectorToCompare.x >= this.x && vectorToCompare.y >= this.y;
     }
 
-    isContained(vectorToCompare: Vec2, sizeVector: Vec2,) {
-        const vectCopy = new Vec2(vectorToCompare.x, vectorToCompare.y);
-        vectCopy.add(sizeVector);
+    isContained(vectorToCompare: Vec2, sizeVector: Vec2) {
+        const vectCopy = (new Vec2(vectorToCompare.x, vectorToCompare.y)).add(sizeVector);
+        // vectCopy = vectCopy.add(sizeVector);
 
-        return vectorToCompare.isSmaller(this) && vectCopy.isBigger(this);
+        return this.isBigger(vectorToCompare) && this.isSmaller(vectCopy);
     }
 
     copy() : Vec2 {

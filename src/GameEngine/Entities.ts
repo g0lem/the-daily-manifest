@@ -15,7 +15,7 @@ export class Entities {
     findByCoords(coords: Vec2) {
         return this.gameObjects.find((gameObject: RenderableObject) => {
             const position: Vec2 = gameObject.position;
-            const size = new Vec2(64,64);
+            const size = new Vec2(200,200);
             return coords.isContained(position, size);
         })
     }
