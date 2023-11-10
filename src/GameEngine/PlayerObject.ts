@@ -31,7 +31,7 @@ export class PlayerObject extends GameObject {
         document.addEventListener("keydown", (event) => {
             this.timeDelta.executeWithTimeDelta(() => {
                 this.keyPressCallback(event);
-            }, 30);
+            }, 10);
         })
 
         document.addEventListener("keyup", (event) => {
@@ -48,30 +48,34 @@ export class PlayerObject extends GameObject {
         if(this.stats.isDead()) {
             return;
         }
-        if (event.key === 'w') {
-            this.position.y -= 8;
-            this.sprite!.currentAnimation!.setFrameStart(new Vec2(0,3));
-            this.sprite!.currentAnimation!.setAmountOfFrames(new Vec2(3,0));
-        }
-        if (event.key === 's') {
-            this.position.y += 8;
-            this.sprite!.currentAnimation!.setFrameStart(new Vec2(0,0));
-            this.sprite!.currentAnimation!.setAmountOfFrames(new Vec2(3,0));;
-        }
+        switch(event.key){
+            case 'w': 
+                this.position.y -= 8;
+                this.sprite!.currentAnimation!.setFrameStart(new Vec2(0,3));
+                this.sprite!.currentAnimation!.setAmountOfFrames(new Vec2(3,0));
+                break;
+            case 's': 
+                this.sprite!.currentAnimation!.setFrameStart(new Vec2(0,0));
+                this.sprite!.currentAnimation!.setAmountOfFrames(new Vec2(3,0));
+                this.position.y += 8;
+                break;
+            case 'a': 
+                this.sprite!.currentAnimation!.setFrameStart(new Vec2(0,1));
+                this.sprite!.currentAnimation!.setAmountOfFrames(new Vec2(3,0));
+                this.position.x -= 8;
+                break;
+            case 'd': 
+                this.sprite!.currentAnimation!.setFrameStart(new Vec2(0,2));
+                this.sprite!.currentAnimation!.setAmountOfFrames(new Vec2(3,0));
+                this.position.x += 8;
+                break; 
+            case 'x': 
+                this.stats.health -= 1;
+                break; 
 
-        if (event.key === 'a') {
-            this.position.x -= 8;
-            this.sprite!.currentAnimation!.setFrameStart(new Vec2(0,1));
-            this.sprite!.currentAnimation!.setAmountOfFrames(new Vec2(3,0));
-        }
-        if (event.key === 'd') {
-            this.position.x += 8;
-            this.sprite!.currentAnimation!.setFrameStart(new Vec2(0,2));
-            this.sprite!.currentAnimation!.setAmountOfFrames(new Vec2(3,0));
-        }
+            default: 
+                break;
 
-        if (event.key === 'x') {
-            this.stats.health -= 1;
         }
     };
 }

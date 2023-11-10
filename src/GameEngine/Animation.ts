@@ -27,14 +27,18 @@ export class Animation {
 
     updateFrame() {
         this.timeDelta.executeWithTimeDelta(()=> {
-            if(this.currentFrame.isBigger(this.amountOfFrames))  {
-                this.currentFrame = this.frameStart.copy();
-            }
-    
-            const base : Vec2  = this.amountOfFrames.getBase();
-    
-            this.currentFrame.add(base);
+            this.forceUpdateFrame();
         }, 300)
+    }
+
+    forceUpdateFrame = () => {
+        if(this.currentFrame.isBigger(this.amountOfFrames))  {
+            this.currentFrame = this.frameStart.copy();
+        }
+
+        const base : Vec2  = this.amountOfFrames.getBase();
+
+        this.currentFrame.add(base);
     }
 
     getCurrentFramePosition() {
@@ -53,11 +57,19 @@ export class Animation {
     }
 
     setFrameStart = (frameStart : Vec2) => {
+        if(this.frameStart.compare(frameStart)) {
+            return;
+        }
         this.frameStart = frameStart;
+        this.forceUpdateFrame();
     }
 
     setAmountOfFrames = (amountOfFrames : Vec2) => {
+        if(this.amountOfFrames.compare(amountOfFrames)) {
+            return;
+        }
         this.amountOfFrames = amountOfFrames;
+        this.forceUpdateFrame();
     }
 
 

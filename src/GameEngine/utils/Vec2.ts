@@ -66,4 +66,8 @@ export class Vec2 {
         return base;
     }
 
+    compare(vec : Vec2) {
+        return vec.x === this.x && vec.y === this.y;
+    }
+
 }
