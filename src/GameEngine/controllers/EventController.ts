@@ -1,5 +1,5 @@
 import { Entities } from "../Entities";
-import { Vec2 } from "../Vec2";
+import { Vec2 } from "../utils/Vec2";
 import { getCanvasHTMLElement } from "../utils/canvas";
 
 

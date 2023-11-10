@@ -1,4 +1,4 @@
-import { Vec2 } from "./Vec2";
+import { Vec2 } from "./utils/Vec2";
 import { Throttle } from "./utils/Throttle";
 import { TimeDelta } from "./utils/TimeDelta";
 

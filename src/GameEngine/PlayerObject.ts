@@ -2,7 +2,7 @@ import { Stats } from "../RPGEngine/Stats";
 import { Animation } from "./Animation";
 import { GameObject } from "./GameObject";
 import { ResourceLoader } from "./ResourceLoader";
-import { Vec2 } from "./Vec2";
+import { Vec2 } from "./utils/Vec2";
 import { Throttle } from "./utils/Throttle";
 import { TimeDelta } from "./utils/TimeDelta";
 

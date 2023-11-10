@@ -5,7 +5,7 @@ import { HealthBar } from './GameEngine/HealthBar';
 import { PlayerObject } from './GameEngine/PlayerObject';
 import { ResourceLoader } from './GameEngine/ResourceLoader';
 import { Text } from './GameEngine/Text';
-import { Vec2 } from './GameEngine/Vec2';
+import { Vec2 } from './GameEngine/utils/Vec2';
 import { EventController } from './GameEngine/controllers/EventController';
 import { Stats } from './RPGEngine/Stats';
 

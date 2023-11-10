@@ -1,6 +1,6 @@
 import { Stats } from "../RPGEngine/Stats";
 import { RenderableObject } from "./RenderableObject";
-import { Vec2 } from "./Vec2";
+import { Vec2 } from "./utils/Vec2";
 import { getContext } from "./utils/canvas";
 
 
