@@ -1,4 +1,6 @@
-import { Vec2 } from "./Vec2";
+import { Vec2 } from "./utils/Vec2";
+import { Throttle } from "./utils/Throttle";
+import { TimeDelta } from "./utils/TimeDelta";
 
 
 export class Animation {
@@ -6,21 +8,33 @@ export class Animation {
     public frameSize : Vec2 = new Vec2(64, 64);
     public amountOfFrames : Vec2 = new Vec2(3, 0);
     public currentFrame : Vec2 = new Vec2(0,0);
+    private throttle : Throttle;
+    private timeDelta : TimeDelta;
+
+    
 
     constructor(frameStart : Vec2, frameSize : Vec2) {
         this.frameStart = frameStart;
         this.currentFrame = frameStart.copy();
         this.frameSize = frameSize;
+
+        this.throttle = new Throttle(300);
+
+        this.timeDelta = new TimeDelta();
+
+        this.throttle.startThrottle();
     }
 
     updateFrame() {
-        if(this.currentFrame.isBigger(this.amountOfFrames))  {
-            this.currentFrame = this.frameStart.copy();
-        }
-
-        const base : Vec2  = this.amountOfFrames.getBase();
-
-        this.currentFrame.add(base);
+        this.timeDelta.executeWithTimeDelta(()=> {
+            if(this.currentFrame.isBigger(this.amountOfFrames))  {
+                this.currentFrame = this.frameStart.copy();
+            }
+    
+            const base : Vec2  = this.amountOfFrames.getBase();
+    
+            this.currentFrame.add(base);
+        }, 300)
     }
 
     getCurrentFramePosition() {
@@ -36,6 +50,14 @@ export class Animation {
             frameSize: this.frameSize,
             currentFramePosition: this.getCurrentFramePosition(),
         }
+    }
+
+    setFrameStart = (frameStart : Vec2) => {
+        this.frameStart = frameStart;
+    }
+
+    setAmountOfFrames = (amountOfFrames : Vec2) => {
+        this.amountOfFrames = amountOfFrames;
     }
 
 

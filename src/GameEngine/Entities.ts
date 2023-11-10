@@ -1,19 +1,19 @@
-import { GameObject } from "./GameObject";
-import { Vec2 } from "./Vec2";
+import { RenderableObject } from "./RenderableObject";
+import { Vec2 } from "./utils/Vec2";
 
 
 export class Entities {
-    public gameObjects : Array<GameObject> = [];
+    public gameObjects : Array<RenderableObject> = [];
     constructor() {
 
     }
 
-    push(gameObject: GameObject) {
+    push(gameObject: RenderableObject) {
         this.gameObjects.push(gameObject);
     }
 
     findByCoords(coords: Vec2) {
-        return this.gameObjects.find((gameObject: GameObject) => {
+        return this.gameObjects.find((gameObject: RenderableObject) => {
             const position: Vec2 = gameObject.position;
             const size = new Vec2(64,64);
             return coords.isContained(position, size);
@@ -22,7 +22,7 @@ export class Entities {
 
 
     render() {
-        this.gameObjects.forEach((gameObject: GameObject) => {
+        this.gameObjects.forEach((gameObject: RenderableObject) => {
             gameObject.render();
         })
     }

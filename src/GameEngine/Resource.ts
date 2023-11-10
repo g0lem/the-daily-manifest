@@ -1,4 +1,4 @@
-import { Vec2 } from "./Vec2";
+import { Vec2 } from "./utils/Vec2";
 
 export class Resource {
     public source: string;

@@ -1,11 +1,13 @@
 import { Animation } from './GameEngine/Animation';
 import { Entities } from './GameEngine/Entities';
 import { GameObject } from './GameEngine/GameObject';
+import { HealthBar } from './GameEngine/HealthBar';
 import { PlayerObject } from './GameEngine/PlayerObject';
 import { ResourceLoader } from './GameEngine/ResourceLoader';
 import { Text } from './GameEngine/Text';
-import { Vec2 } from './GameEngine/Vec2';
+import { Vec2 } from './GameEngine/utils/Vec2';
 import { EventController } from './GameEngine/controllers/EventController';
+import { Stats } from './RPGEngine/Stats';
 
 
 const canvas : HTMLCanvasElement = <HTMLCanvasElement>document.getElementById('app')!;
@@ -41,11 +43,20 @@ const resourceLoader = new ResourceLoader([
 
 resourceLoader.fetchAllResources();
 
-const gameObj = new PlayerObject(resourceLoader, 'pokemon', new Vec2(0,0), new Animation(new Vec2(0,0), new Vec2(64,64)));
+const stats = new Stats();
+
+const gameObj = new PlayerObject(resourceLoader, 'pokemon', new Vec2(0,0), new Animation(new Vec2(0,0), new Vec2(64,64)), stats);
+const gameObj2 = new PlayerObject(resourceLoader, 'pokemon', new Vec2(100,100), new Animation(new Vec2(0,0), new Vec2(64,64)), stats);
+
 const gameObj3 = new GameObject(resourceLoader, 'vim', new Vec2(50,50), null);
+
+const healthBar = new HealthBar(stats);
+
 const entities = new Entities();
 entities.push(gameObj3);
+entities.push(gameObj2);
 entities.push(gameObj);
+entities.push(healthBar);
 
 const context : CanvasRenderingContext2D = canvas.getContext('2d')!;
 
@@ -55,8 +66,9 @@ let timer : number = Date.now();
 
 context.font = "30px Brush Script MT, cursive";
 context.strokeText("Hello World", 10, 50); 
+context.imageSmoothingEnabled= false;
 
-const fontTest = new Text(new Vec2(20, 20), "SUP MAN?");
+const fontTest = new Text(new Vec2(100, 20), "SUP MAN?");
 
 const eventController = new EventController(entities);
 
@@ -66,10 +78,10 @@ const drawLine : ()=>void = () => {
     timer = Date.now();
     counter = 0;
   }
-  context.clearRect(0,0,300,300);
+  context.clearRect(0,0,800,600);
   context.beginPath();
   context.moveTo(0,0);
-  context.lineTo(300,300);
+  context.lineTo(800,600);
   context.stroke();
   entities.render();
   fontTest.render();
