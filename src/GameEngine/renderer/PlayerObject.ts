@@ -1,25 +1,21 @@
-import { Stats } from "../RPGEngine/Stats";
+import { Stats } from "../../RPGEngine/Stats";
 import { Animation } from "./Animation";
 import { GameObject } from "./GameObject";
-import { ResourceLoader } from "./ResourceLoader";
-import { Vec2 } from "./utils/Vec2";
-import { Throttle } from "./utils/Throttle";
-import { TimeDelta } from "./utils/TimeDelta";
+import { ResourceLoader } from "../loaders/ResourceLoader";
+import { Vec2 } from "../utils/Vec2";
+import { TimeDelta } from "../utils/TimeDelta";
 
 
 
 export class PlayerObject extends GameObject {
 
     public stats: Stats;
-    private throttle: Throttle;
     private timeDelta: TimeDelta;
 
     constructor(resourceLoader: ResourceLoader, spriteName: string, position: Vec2, animation: Animation | null, stats: Stats) {
         super(resourceLoader, spriteName, position, animation);
 
         this.stats = stats;
-
-        this.throttle = new Throttle(10);
 
         this.timeDelta = new TimeDelta();
 
@@ -34,7 +30,7 @@ export class PlayerObject extends GameObject {
             }, 10);
         })
 
-        document.addEventListener("keyup", (event) => {
+        document.addEventListener("keyup", () => {
             this.timeDelta.setTime();
             this.stopAnimation();
         })

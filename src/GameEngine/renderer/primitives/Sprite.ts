@@ -1,7 +1,7 @@
-import { Animation } from "./Animation";
-import { Resource } from "./Resource";
-import { Vec2 } from "./utils/Vec2";
-import { getContext } from "./utils/canvas";
+import { Animation } from "../Animation";
+import { Resource } from "../../loaders/Resource";
+import { Vec2 } from "../../utils/Vec2";
+import { getContext } from "../../utils/canvas";
 
 
 export class Sprite {

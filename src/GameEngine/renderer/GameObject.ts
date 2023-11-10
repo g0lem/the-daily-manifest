@@ -1,8 +1,8 @@
 import { Animation } from "./Animation";
-import { RenderableObject } from "./RenderableObject";
-import { ResourceLoader } from "./ResourceLoader";
-import { Sprite } from "./Sprite";
-import { Vec2 } from "./utils/Vec2";
+import { RenderableObject } from "./primitives/RenderableObject";
+import { ResourceLoader } from "../loaders/ResourceLoader";
+import { Sprite } from "./primitives/Sprite";
+import { Vec2 } from "../utils/Vec2";
 
 
 export class GameObject implements RenderableObject {

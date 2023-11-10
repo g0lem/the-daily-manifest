@@ -1,8 +1,8 @@
-import { RenderableObject } from "./RenderableObject";
-import { Vec2 } from "./utils/Vec2";
+import { RenderableObject } from "./primitives/RenderableObject";
+import { Vec2 } from "../utils/Vec2";
 
 
-export class Entities {
+export class Renderer {
     public gameObjects : Array<RenderableObject> = [];
     constructor() {
 

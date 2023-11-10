@@ -1,6 +1,6 @@
-import { Vec2 } from "./utils/Vec2";
-import { Throttle } from "./utils/Throttle";
-import { TimeDelta } from "./utils/TimeDelta";
+import { Vec2 } from "../utils/Vec2";
+import { Throttle } from "../utils/Throttle";
+import { TimeDelta } from "../utils/TimeDelta";
 
 
 export class Animation {

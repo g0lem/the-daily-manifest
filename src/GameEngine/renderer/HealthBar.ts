@@ -1,7 +1,7 @@
-import { Stats } from "../RPGEngine/Stats";
-import { RenderableObject } from "./RenderableObject";
-import { Vec2 } from "./utils/Vec2";
-import { getContext } from "./utils/canvas";
+import { Stats } from "../../RPGEngine/Stats";
+import { RenderableObject } from "./primitives/RenderableObject";
+import { Vec2 } from "../utils/Vec2";
+import { getContext } from "../utils/canvas";
 
 
 export class HealthBar implements RenderableObject {

@@ -1,8 +1,9 @@
-import { Vec2 } from "./utils/Vec2";
-import { getContext } from "./utils/canvas";
+import { RenderableObject } from "./RenderableObject";
+import { Vec2 } from "../../utils/Vec2";
+import { getContext } from "../../utils/canvas";
 
 
-export class Text {
+export class Text implements RenderableObject {
     public position : Vec2;
     public text : string;
     public font : string = "30px Brush Script MT, cursive";
@@ -10,6 +11,19 @@ export class Text {
     constructor(position: Vec2, text: string) {
         this.position = position;
         this.text = text;
+    }
+
+    onClick = () => {
+        console.log('click');
+    }
+
+    onHover = () => {
+        console.log('hover');
+    }
+
+
+    onScroll = () => {
+        console.log('scroll');
     }
 
     render() {
