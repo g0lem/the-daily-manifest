@@ -12,6 +12,14 @@ export class Renderer {
         this.gameObjects.push(gameObject);
     }
 
+    clear = () => {
+        this.gameObjects = [];
+    }
+
+    override = (newArray : Array<RenderableObject>)=> {
+        this.gameObjects = newArray;
+    }
+
     findByCoords(coords: Vec2) {
         return this.gameObjects.find((gameObject: RenderableObject) => {
             const position: Vec2 = gameObject.position;
