@@ -19,7 +19,6 @@ export class bGameObject {
     constructor() {
     }
 
-
     withType = (type: GameObjectTypes) => {
         this.type = type;
         return this;
@@ -49,7 +48,6 @@ export class bGameObject {
     }
 
 
-
     generateSprite = () : Sprite | void => {
         const resource = this.resourceLoader
                             .resourceList.find(({key}) => key === this.spriteName);
@@ -58,7 +56,6 @@ export class bGameObject {
         }
         return new Sprite(resource);
     }
-
 
     build() {
         const sprite = this.generateSprite();
@@ -72,6 +69,4 @@ export class bGameObject {
         }
         
     }
-
-
 }

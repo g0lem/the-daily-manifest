@@ -3,13 +3,11 @@ import { TimeDelta } from "../utils/TimeDelta";
 
 
 export class Animation {
-    public frameStart : Vec2 = new Vec2(0,0);
-    public frameSize : Vec2 = new Vec2(64, 64);
-    public amountOfFrames : Vec2 = new Vec2(3, 0);
-    public currentFrame : Vec2 = new Vec2(0,0);
+    private frameStart : Vec2 = new Vec2(0,0);
+    private frameSize : Vec2 = new Vec2(64, 64);
+    private amountOfFrames : Vec2 = new Vec2(3, 0);
+    private currentFrame : Vec2 = new Vec2(0,0);
     private timeDelta : TimeDelta;
-
-    
 
     constructor(frameStart : Vec2, frameSize : Vec2) {
         this.frameStart = frameStart;

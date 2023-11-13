@@ -36,7 +36,7 @@ export class PlayerObject extends GameObject {
     }
 
     stopAnimation = () => {
-        this.sprite!.currentAnimation!.amountOfFrames = new Vec2(0,0);
+        this.sprite!.currentAnimation!.setAmountOfFrames(new Vec2(0,0));
     }
 
     keyPressCallback = (event : KeyboardEvent) => {
