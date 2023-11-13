@@ -1,13 +1,13 @@
 import { Stats } from "../RPGEngine/Stats";
+import { bGameObject } from "./builders/bGameObject";
 import { EventController } from "./controllers/EventController";
 import { ResourceLoader } from "./loaders/ResourceLoader";
-import { GameObject } from "./renderer/GameObject";
 import { HealthBar } from "./renderer/HealthBar";
-import { PlayerObject } from "./renderer/PlayerObject";
 import { Renderer } from "./renderer/Renderer";
 import { Text } from "./renderer/primitives/Text";
 import { Vec2 } from "./utils/Vec2";
 import { adjustResolution, getContext } from "./utils/canvas"
+import { GameObjectTypes } from "./utils/constants";
 
 
 
@@ -57,17 +57,32 @@ export class Game {
     }
 
     loadWorld = () => {
-        const gameObj = new PlayerObject(this.resourceLoader, 'pokemon', new Vec2(0,0), this.stats);
-        const gameObj2 = new PlayerObject(this.resourceLoader, 'pokemon', new Vec2(100,100), this.stats);
+        const gameObj = new bGameObject()
+                            .withType(GameObjectTypes.player)
+                            .withResourceLoader(this.resourceLoader)
+                            .withSpriteName('pokemon')
+                            .withPosition(new Vec2(0,0))
+                            .build();
 
-        const gameObj3 = new GameObject(this.resourceLoader, 'vim', new Vec2(50,50));
+        const gameObj2 = new bGameObject()
+                            .withType(GameObjectTypes.player)
+                            .withResourceLoader(this.resourceLoader)
+                            .withSpriteName('pokemon')
+                            .withPosition(new Vec2(100,100))
+                            .build();
+
+        const gameObj3 = new bGameObject()
+                                .withResourceLoader(this.resourceLoader)
+                                .withSpriteName('vim')
+                                .withPosition(new Vec2(50,50))
+                                .build();
 
         const healthBar = new HealthBar(this.stats);
         const fontTest = new Text(new Vec2(100, 20), "SUP MAN?");
 
-        this.renderer.push(gameObj3);
-        this.renderer.push(gameObj2);
-        this.renderer.push(gameObj);
+        this.renderer.push(gameObj3!);
+        this.renderer.push(gameObj2!);
+        this.renderer.push(gameObj!);
         this.renderer.push(healthBar);
         this.renderer.push(fontTest);
     }
