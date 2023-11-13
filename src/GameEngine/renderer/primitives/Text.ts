@@ -12,8 +12,8 @@ export class Text implements iRenderableObject {
     public size : Vec2 = new Vec2(30, 300);
     public font : string = "Brush Script MT, cursive";
 
-    constructor(id : string, position: Vec2, text: string) {
-        this.id = new Id(id);
+    constructor(id : Id, position: Vec2, text: string) {
+        this.id = id;
 
         this.position = position;
         this.text = text;

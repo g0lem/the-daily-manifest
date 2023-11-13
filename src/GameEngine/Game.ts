@@ -1,5 +1,6 @@
 import { Stats } from "../RPGEngine/Stats";
 import { bGameObject } from "./builders/bGameObject";
+import { bText } from "./builders/bText";
 import { EventController } from "./controllers/EventController";
 import { ResourceLoader } from "./loaders/ResourceLoader";
 import { HealthBar } from "./renderer/HealthBar";
@@ -80,7 +81,11 @@ export class Game {
                                 .build();
 
         const healthBar = new HealthBar('health-bar', this.stats);
-        const fontTest = new Text('hello-text',new Vec2(100, 20), "SUP MAN?");
+        const fontTest = new bText()
+                            .withId('text')
+                            .withPosition(new Vec2(200,200))
+                            .withText('ello')
+                            .build();
 
         this.renderer.push(gameObj3!);
         this.renderer.push(gameObj2!);
