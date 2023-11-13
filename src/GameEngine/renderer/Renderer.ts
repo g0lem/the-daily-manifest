@@ -1,14 +1,14 @@
-import { RenderableObject } from "./primitives/RenderableObject";
+import { iRenderableObject } from "./primitives/iRenderableObject";
 import { Vec2 } from "../utils/Vec2";
 
 
 export class Renderer {
-    public gameObjects : Array<RenderableObject> = [];
+    public gameObjects : Array<iRenderableObject> = [];
     constructor() {
 
     }
 
-    push(gameObject: RenderableObject) {
+    push(gameObject: iRenderableObject) {
         this.gameObjects.push(gameObject);
     }
 
@@ -16,21 +16,21 @@ export class Renderer {
         this.gameObjects = [];
     }
 
-    override = (newArray : Array<RenderableObject>)=> {
+    override = (newArray : Array<iRenderableObject>)=> {
         this.gameObjects = newArray;
     }
 
     findByCoords(coords: Vec2) {
-        return this.gameObjects.find((gameObject: RenderableObject) => {
+        return this.gameObjects.find((gameObject: iRenderableObject) => {
             const position: Vec2 = gameObject.position;
-            const size = new Vec2(200,200);
+            const size = gameObject.size;
             return coords.isContained(position, size);
         })
     }
 
 
     render() {
-        this.gameObjects.forEach((gameObject: RenderableObject) => {
+        this.gameObjects.forEach((gameObject: iRenderableObject) => {
             gameObject.render();
         })
     }

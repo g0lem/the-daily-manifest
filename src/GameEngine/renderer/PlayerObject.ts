@@ -1,5 +1,4 @@
 import { Stats } from "../../RPGEngine/Stats";
-import { Animation } from "./Animation";
 import { GameObject } from "./GameObject";
 import { ResourceLoader } from "../loaders/ResourceLoader";
 import { Vec2 } from "../utils/Vec2";
@@ -12,8 +11,8 @@ export class PlayerObject extends GameObject {
     public stats: Stats;
     private timeDelta: TimeDelta;
 
-    constructor(resourceLoader: ResourceLoader, spriteName: string, position: Vec2, animation: Animation | null, stats: Stats) {
-        super(resourceLoader, spriteName, position, animation);
+    constructor(resourceLoader: ResourceLoader, spriteName: string, position: Vec2, stats: Stats) {
+        super(resourceLoader, spriteName, position);
 
         this.stats = stats;
 

@@ -1,22 +1,20 @@
-import { Animation } from "./Animation";
-import { RenderableObject } from "./primitives/RenderableObject";
+import { iRenderableObject } from "./primitives/iRenderableObject";
 import { ResourceLoader } from "../loaders/ResourceLoader";
 import { Sprite } from "./primitives/Sprite";
 import { Vec2 } from "../utils/Vec2";
 
 
-export class GameObject implements RenderableObject {
+export class GameObject implements iRenderableObject {
     public sprite: Sprite | void;
     public spriteName: string;
     public position: Vec2;
     public resourceLoader: ResourceLoader;
-    public animation: Animation | null = null;
+    public size = new Vec2(64,64);
 
-    constructor(resourceLoader: ResourceLoader, spriteName: string, position: Vec2, animation: Animation | null) {
+    constructor(resourceLoader: ResourceLoader, spriteName: string, position: Vec2) {
         this.position = position;
         this.resourceLoader = resourceLoader;
         this.spriteName = spriteName;
-        this.animation = animation;
         this.sprite = this.generateSprite();
     }
 
@@ -26,7 +24,7 @@ export class GameObject implements RenderableObject {
         if(!resource) {
             return;
         }
-        return new Sprite(resource, this.animation);
+        return new Sprite(resource);
     }
 
     listenForKeyPresses = () => {

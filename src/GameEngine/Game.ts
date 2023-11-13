@@ -1,7 +1,6 @@
 import { Stats } from "../RPGEngine/Stats";
 import { EventController } from "./controllers/EventController";
 import { ResourceLoader } from "./loaders/ResourceLoader";
-import { Animation } from "./renderer/Animation";
 import { GameObject } from "./renderer/GameObject";
 import { HealthBar } from "./renderer/HealthBar";
 import { PlayerObject } from "./renderer/PlayerObject";
@@ -58,10 +57,10 @@ export class Game {
     }
 
     loadWorld = () => {
-        const gameObj = new PlayerObject(this.resourceLoader, 'pokemon', new Vec2(0,0), new Animation(new Vec2(0,0), new Vec2(64,64)), this.stats);
-        const gameObj2 = new PlayerObject(this.resourceLoader, 'pokemon', new Vec2(100,100), new Animation(new Vec2(0,0), new Vec2(64,64)), this.stats);
+        const gameObj = new PlayerObject(this.resourceLoader, 'pokemon', new Vec2(0,0), this.stats);
+        const gameObj2 = new PlayerObject(this.resourceLoader, 'pokemon', new Vec2(100,100), this.stats);
 
-        const gameObj3 = new GameObject(this.resourceLoader, 'vim', new Vec2(50,50), null);
+        const gameObj3 = new GameObject(this.resourceLoader, 'vim', new Vec2(50,50));
 
         const healthBar = new HealthBar(this.stats);
         const fontTest = new Text(new Vec2(100, 20), "SUP MAN?");
