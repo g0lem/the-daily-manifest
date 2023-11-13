@@ -3,11 +3,14 @@ import { ResourceLoader } from "../loaders/ResourceLoader";
 import { GameObject } from "../renderer/GameObject";
 import { PlayerObject } from "../renderer/PlayerObject";
 import { Sprite } from "../renderer/primitives/Sprite";
+import { Id } from "../utils/Id";
 import { Vec2 } from "../utils/Vec2";
 import { GameObjectTypes } from "../utils/constants";
 
-
 export class bGameObject {
+    
+    private id : Id = new Id('');
+
     private spriteName: string = '';
     private position: Vec2 = new Vec2(0,0);
     private resourceLoader: ResourceLoader = new ResourceLoader([]);
@@ -47,6 +50,11 @@ export class bGameObject {
         return this;
     }
 
+    withId = (id: string) => {
+        this.id = new Id(id);
+        return this;
+    }
+
 
     generateSprite = () : Sprite | void => {
         const resource = this.resourceLoader
@@ -62,10 +70,10 @@ export class bGameObject {
 
         switch(this.type) {
             case GameObjectTypes.player: 
-                return new PlayerObject(sprite!, this.position, this.stats);
+                return new PlayerObject(this.id, sprite!, this.position, this.stats);
             case GameObjectTypes.default: 
             default: 
-                return new GameObject(sprite!, this.position);
+                return new GameObject(this.id, sprite!, this.position);
         }
         
     }

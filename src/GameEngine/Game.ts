@@ -58,6 +58,7 @@ export class Game {
 
     loadWorld = () => {
         const gameObj = new bGameObject()
+                            .withId('player1')
                             .withType(GameObjectTypes.player)
                             .withResourceLoader(this.resourceLoader)
                             .withSpriteName('pokemon')
@@ -65,6 +66,7 @@ export class Game {
                             .build();
 
         const gameObj2 = new bGameObject()
+                            .withId('player2')
                             .withType(GameObjectTypes.player)
                             .withResourceLoader(this.resourceLoader)
                             .withSpriteName('pokemon')
@@ -77,8 +79,8 @@ export class Game {
                                 .withPosition(new Vec2(50,50))
                                 .build();
 
-        const healthBar = new HealthBar(this.stats);
-        const fontTest = new Text(new Vec2(100, 20), "SUP MAN?");
+        const healthBar = new HealthBar('health-bar', this.stats);
+        const fontTest = new Text('hello-text',new Vec2(100, 20), "SUP MAN?");
 
         this.renderer.push(gameObj3!);
         this.renderer.push(gameObj2!);

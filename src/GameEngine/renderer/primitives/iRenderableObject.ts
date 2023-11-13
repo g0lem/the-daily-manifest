@@ -1,3 +1,4 @@
+import { Id } from "../../utils/Id";
 import { Vec2 } from "../../utils/Vec2";
 
 
@@ -8,4 +9,5 @@ export interface iRenderableObject {
     render: ()=>void;
     position: Vec2;
     size: Vec2;
+    id: Id;
 }

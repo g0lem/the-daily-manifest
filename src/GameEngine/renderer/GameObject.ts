@@ -1,6 +1,7 @@
 import { iRenderableObject } from "./primitives/iRenderableObject";
 import { Sprite } from "./primitives/Sprite";
 import { Vec2 } from "../utils/Vec2";
+import { Id } from "../utils/Id";
 
 
 export class GameObject implements iRenderableObject {
@@ -8,7 +9,11 @@ export class GameObject implements iRenderableObject {
     public position: Vec2;
     public size = new Vec2(64,64);
 
-    constructor(sprite: Sprite, position: Vec2) {
+    public id : Id;
+
+    constructor(id: Id, sprite: Sprite, position: Vec2) {
+        this.id = id;
+
         this.sprite = sprite;
         this.position = position;
     }

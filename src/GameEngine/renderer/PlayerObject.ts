@@ -3,6 +3,7 @@ import { GameObject } from "./GameObject";
 import { Vec2 } from "../utils/Vec2";
 import { TimeDelta } from "../utils/TimeDelta";
 import { Sprite } from "./primitives/Sprite";
+import { Id } from "../utils/Id";
 
 
 
@@ -11,8 +12,8 @@ export class PlayerObject extends GameObject {
     public stats: Stats;
     private timeDelta: TimeDelta;
 
-    constructor(sprite: Sprite, position: Vec2, stats: Stats) {
-        super(sprite, position);
+    constructor(id: Id, sprite: Sprite, position: Vec2, stats: Stats) {
+        super(id, sprite, position);
 
         this.stats = stats;
 
