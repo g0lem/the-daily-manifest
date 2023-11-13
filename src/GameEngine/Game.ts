@@ -85,6 +85,7 @@ export class Game {
                             .withId('text')
                             .withPosition(new Vec2(200,200))
                             .withText('ello')
+                            .withFont('Brush Script MT, cursive')
                             .build();
 
         this.renderer.push(gameObj3!);

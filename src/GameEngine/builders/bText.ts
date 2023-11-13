@@ -9,6 +9,8 @@ export class bText {
     private position = new Vec2(0,0);
     private text = '';
 
+    private font = '';
+
 
     withId = (id: string) => {
         this.id = new Id(id);
@@ -25,9 +27,15 @@ export class bText {
         return this;
     }
 
-
+    withFont = (font: string) => {
+        this.font = font;
+        return this;
+    }
 
     build = () => {
-        return new Text(this.id, this.position, this.text);
+        const text = new Text(this.id, this.position, this.text);
+        text.setFont(this.font);
+
+        return text;
     }
 }

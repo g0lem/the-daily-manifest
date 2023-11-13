@@ -10,7 +10,7 @@ export class Text implements iRenderableObject {
     public position : Vec2;
     public text : string;
     public size : Vec2 = new Vec2(30, 300);
-    public font : string = "Brush Script MT, cursive";
+    private font : string = '';
 
     constructor(id : Id, position: Vec2, text: string) {
         this.id = id;
@@ -36,8 +36,8 @@ export class Text implements iRenderableObject {
         return `${this.size.x}px ${this.font}`;
     }
 
-    getId = () => {
-
+    setFont = (font: string) => {
+        this.font = font;
     }
 
     render() {
