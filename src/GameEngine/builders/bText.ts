@@ -1,3 +1,4 @@
+import { PositionalData } from "../composables/PositionalData";
 import { Text } from "../renderer/primitives/Text";
 import { Id } from "../utils/Id";
 import { Vec2 } from "../utils/Vec2"
@@ -6,7 +7,7 @@ import { Vec2 } from "../utils/Vec2"
 export class bText {
 
     private id: Id = new Id('');
-    private position = new Vec2(0,0);
+    private positionalData: PositionalData = new PositionalData(0,0,0,0);
     private text = '';
 
     private font = '';
@@ -17,8 +18,10 @@ export class bText {
         return this;
     }
 
-    withPosition = (position : Vec2) => {
-        this.position = position;
+
+    withPositionalData = (posX: number, posY: number, sizeX: number, sizeY: number) => {
+        this.positionalData = new PositionalData(posX,posY, sizeX, sizeY);
+
         return this;
     }
 
@@ -33,7 +36,7 @@ export class bText {
     }
 
     build = () => {
-        const text = new Text(this.id, this.position, this.text);
+        const text = new Text(this.id, this.positionalData, this.text);
         text.setFont(this.font);
 
         return text;

@@ -5,7 +5,7 @@ import { TimeDelta } from "../utils/TimeDelta";
 export class Animation {
     private frameStart : Vec2 = new Vec2(0,0);
     private frameSize : Vec2 = new Vec2(64, 64);
-    private amountOfFrames : Vec2 = new Vec2(3, 0);
+    private amountOfFrames : Vec2 = new Vec2(0, 0);
     private currentFrame : Vec2 = new Vec2(0,0);
     private timeDelta : TimeDelta;
 

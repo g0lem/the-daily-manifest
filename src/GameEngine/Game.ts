@@ -2,7 +2,7 @@ import { Stats } from "../RPGEngine/Stats";
 import { bGameObject } from "./builders/bGameObject";
 import { bText } from "./builders/bText";
 import { EventController } from "./controllers/EventController";
-import { ResourceLoader } from "./loaders/ResourceLoader";
+import { ResourceLoader } from "./managers/ResourceLoader";
 import { HealthBar } from "./renderer/HealthBar";
 import { Renderer } from "./renderer/Renderer";
 import { Vec2 } from "./utils/Vec2";
@@ -84,7 +84,7 @@ export class Game {
         const healthBar = new HealthBar('health-bar', this.stats);
         const fontTest = new bText()
                             .withId('text')
-                            .withPosition(new Vec2(200,200))
+                            .withPositionalData(200,200, 15,15)
                             .withText('ello')
                             .withFont('Brush Script MT, cursive')
                             .build();

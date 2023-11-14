@@ -1,23 +1,22 @@
 import { iRenderableObject } from "./iRenderableObject";
-import { Vec2 } from "../../utils/Vec2";
 import { getContext } from "../../utils/canvas";
 import { Id } from "../../utils/Id";
+import { PositionalData } from "../../composables/PositionalData";
 
 
 export class Text implements iRenderableObject {
     public id : Id;
 
     public visible = true;
+    public positionalData: PositionalData;
 
-    public position : Vec2;
     public text : string;
-    public size : Vec2 = new Vec2(30, 300);
     private font : string = '';
 
-    constructor(id : Id, position: Vec2, text: string) {
+    constructor(id : Id, positionalData: PositionalData, text: string) {
         this.id = id;
 
-        this.position = position;
+        this.positionalData = positionalData;
         this.text = text;
     }
 
@@ -35,7 +34,7 @@ export class Text implements iRenderableObject {
     }
 
     generateFontString = () => {
-        return `${this.size.x}px ${this.font}`;
+        return `${this.positionalData.getSize().x}px ${this.font}`;
     }
 
     setFont = (font: string) => {
@@ -43,8 +42,9 @@ export class Text implements iRenderableObject {
     }
 
     render() {
+        const args = this.positionalData.getThree();
         const context = getContext();
         context.font = this.generateFontString();
-        context.strokeText(this.text , this.position.x, this.position.y, this.size.y); 
+        context.strokeText(this.text , ...args); 
     }
 }

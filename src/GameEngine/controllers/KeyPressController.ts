@@ -1,4 +1,4 @@
-import { PlayerObject } from "../renderer/PlayerObject";
+import { GameObject } from "../renderer/GameObject";
 import { Renderer } from "../renderer/Renderer";
 import { iRenderableObject } from "../renderer/primitives/iRenderableObject";
 import { Vec2 } from "../utils/Vec2";
@@ -32,31 +32,31 @@ export class KeyPressController {
         })
     }
 
-    handlePlayerMovement = (player: PlayerObject) => {
+    handlePlayerMovement = (player: GameObject) => {
 
-        if(player.stats.isDead()) {
-            return;
-        }
+        // if(player.stats.isDead()) {
+        //     return;
+        // }
 
         if(this.keyMap.get('w')) {
-            player.position.y -= 8;
+            player.positionalData.addToPos(0, -8);
             player.sprite!.currentAnimation!.setFrameStart(new Vec2(0,3));
             player.sprite!.currentAnimation!.setAmountOfFrames(new Vec2(3,0));
         }
         if(this.keyMap.get('s')) {
             player.sprite!.currentAnimation!.setFrameStart(new Vec2(0,0));
             player.sprite!.currentAnimation!.setAmountOfFrames(new Vec2(3,0));
-            player.position.y += 8;
+            player.positionalData.addToPos(0, 8);
         }
         if(this.keyMap.get('a')) {
             player.sprite!.currentAnimation!.setFrameStart(new Vec2(0,1));
             player.sprite!.currentAnimation!.setAmountOfFrames(new Vec2(3,0));
-            player.position.x -= 8;
+            player.positionalData.addToPos(-8, 0);
         }
         if(this.keyMap.get('d')) {
             player.sprite!.currentAnimation!.setFrameStart(new Vec2(0,2));
             player.sprite!.currentAnimation!.setAmountOfFrames(new Vec2(3,0));
-            player.position.x += 8;
+            player.positionalData.addToPos(8, 0);
         }
 
         if(!this.keyMap.get('w') 
@@ -77,8 +77,8 @@ export class KeyPressController {
                 return renderableObj.id.hasId('player2');
             })
 
-            this.handlePlayerMovement(<PlayerObject>player!);
-            this.handlePlayerMovement(<PlayerObject>player2!);
+            this.handlePlayerMovement(<GameObject>player!);
+            this.handlePlayerMovement(<GameObject>player2!);
         },30)
     }
 

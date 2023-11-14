@@ -4,7 +4,9 @@ export class Stats {
     public maxHealth : number = 1000;
     public attack : number = 0;
     public armor: number = 0;
-
+    public font : string = '';
+    public text : string = '';
+    public visible = true;
 
     constructor() {
 

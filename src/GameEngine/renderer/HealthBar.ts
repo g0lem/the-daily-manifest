@@ -1,15 +1,14 @@
 import { Stats } from "../../RPGEngine/Stats";
 import { iRenderableObject } from "./primitives/iRenderableObject";
-import { Vec2 } from "../utils/Vec2";
 import { getContext } from "../utils/canvas";
 import { Id } from "../utils/Id";
+import { PositionalData } from "../composables/PositionalData";
 
 
 export class HealthBar implements iRenderableObject {
     public id : Id;
 
-    public position: Vec2;
-    public size: Vec2;
+    public positionalData: PositionalData;
 
     public visible = true;
 
@@ -17,9 +16,7 @@ export class HealthBar implements iRenderableObject {
 
     constructor(id:string, stats: Stats) {
         this.id = new Id(id);
-        this.position = new Vec2(10,300);
-
-        this.size = (new Vec2(50, 5));
+        this.positionalData = new PositionalData(10,300,50,5);
 
         this.stats = stats;
     }
@@ -30,13 +27,17 @@ export class HealthBar implements iRenderableObject {
 
     render() {
         const context = getContext();
-        context.rect(this.position.x, this.position.y, this.size.x, this.size.y);
+        context.rect(...this.positionalData.getAll());
         context.fillStyle = "red";
         context.fill();
         context.stroke();
 
+        const [
+            x, y, sx, sy
+        ] = this.positionalData.getAll()
+
         context.beginPath();
-        context.rect(this.position.x, this.position.y, this.size.x * this.stats.calculateHealthPercentage(), this.size.y);
+        context.rect(x, y, sx * this.stats.calculateHealthPercentage(), sy);
         context.fillStyle = "green";
         context.fill();
 

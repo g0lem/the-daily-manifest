@@ -1,3 +1,4 @@
+import { PositionalData } from "../../composables/PositionalData";
 import { Id } from "../../utils/Id";
 import { Vec2 } from "../../utils/Vec2";
 
@@ -7,8 +8,7 @@ export interface iRenderableObject {
     onHover: ()=>void;
     onScroll: ()=>void;
     render: ()=>void;
-    position: Vec2;
-    size: Vec2;
+    positionalData: PositionalData;
     id: Id;
     visible: boolean;
 }

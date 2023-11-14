@@ -1,5 +1,6 @@
 import { Stats } from "../../RPGEngine/Stats";
-import { ResourceLoader } from "../loaders/ResourceLoader";
+import { PositionalData } from "../composables/PositionalData";
+import { ResourceLoader } from "../managers/ResourceLoader";
 import { GameObject } from "../renderer/GameObject";
 import { PlayerObject } from "../renderer/PlayerObject";
 import { Sprite } from "../renderer/primitives/Sprite";
@@ -18,6 +19,8 @@ export class bGameObject {
     private stats: Stats = new Stats();
 
     private type : GameObjectTypes = GameObjectTypes.default;
+
+    private positionalData: PositionalData = new PositionalData(0,0,0,0);
 
     constructor() {
     }
@@ -55,6 +58,12 @@ export class bGameObject {
         return this;
     }
 
+    withPositionalData = (posX: number, posY: number, sizeX: number, sizeY: number) => {
+        this.positionalData = new PositionalData(posX,posY, sizeX, sizeY);
+
+        return this;
+    }
+
 
     generateSprite = () : Sprite | void => {
         const resource = this.resourceLoader
@@ -68,13 +77,15 @@ export class bGameObject {
     build() {
         const sprite = this.generateSprite();
 
-        switch(this.type) {
-            case GameObjectTypes.player: 
-                return new PlayerObject(this.id, sprite!, this.position, this.stats);
-            case GameObjectTypes.default: 
-            default: 
-                return new GameObject(this.id, sprite!, this.position);
-        }
+        return new GameObject(this.id, sprite!, this.positionalData);
+
+        // switch(this.type) {
+        //     case GameObjectTypes.player: 
+        //         return new PlayerObject(this.id, sprite!, this.positionalData, this.stats);
+        //     case GameObjectTypes.default: 
+        //     default: 
+        //         return new GameObject(this.id, sprite!, this.positionalData);
+        // }
         
     }
 }

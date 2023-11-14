@@ -1,5 +1,5 @@
 import { Animation } from "../Animation";
-import { Resource } from "../../loaders/Resource";
+import { Resource } from "../../managers/Resource";
 import { Vec2 } from "../../utils/Vec2";
 import { getContext } from "../../utils/canvas";
 

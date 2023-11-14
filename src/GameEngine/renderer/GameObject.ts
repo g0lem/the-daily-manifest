@@ -1,23 +1,22 @@
 import { iRenderableObject } from "./primitives/iRenderableObject";
 import { Sprite } from "./primitives/Sprite";
-import { Vec2 } from "../utils/Vec2";
 import { Id } from "../utils/Id";
+import { PositionalData } from "../composables/PositionalData";
 
 
 export class GameObject implements iRenderableObject {
     public sprite: Sprite;
-    public position: Vec2;
-    public size = new Vec2(64,64);
+    public positionalData: PositionalData;
 
     public visible = true;
 
     public id : Id;
 
-    constructor(id: Id, sprite: Sprite, position: Vec2) {
+    constructor(id: Id, sprite: Sprite, positionalData: PositionalData) {
         this.id = id;
 
         this.sprite = sprite;
-        this.position = position;
+        this.positionalData = positionalData;
     }
 
     listenForKeyPresses = () => {
@@ -40,6 +39,6 @@ export class GameObject implements iRenderableObject {
         if(!this.sprite) {
             return;
         }
-        this.sprite.render(this.position);
+        this.sprite.render(this.positionalData.getPosition());
     }
 }
