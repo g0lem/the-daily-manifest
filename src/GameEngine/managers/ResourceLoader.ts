@@ -22,13 +22,18 @@ export class ResourceLoader {
             const data = await res.blob();
             resource.resourceBlob = data;
             resource.hasLoaded = true;
-            console.log(resource.resourceBlob);
-
         })
     }
 
     push(resource : Resource) {
         this.resourceList.push(resource);
+    }
+
+    append = (array: Array<Resource> ) => {
+        this.resourceList = [
+            ...this.resourceList,
+            ...array,
+        ];
     }
 
 

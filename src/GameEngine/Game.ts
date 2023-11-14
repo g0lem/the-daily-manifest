@@ -6,12 +6,17 @@ import { Renderer } from "./renderer/Renderer";
 import { Vec2 } from "./utils/Vec2";
 import { adjustResolution, getContext } from "./utils/canvas"
 import { GameObjectTypes } from "./utils/constants";
+import { Resource } from "./managers/Resource";
+import { WorldLoader, WorldMember } from "./managers/WorldLoader";
+import { bStats } from "./builders/bStats";
 
 
 
 export class Game { 
 
     private resourceLoader : ResourceLoader;
+    private worldLoader : WorldLoader;
+
     private stats : Stats;
     private renderer : Renderer;
     private context : CanvasRenderingContext2D;
@@ -19,6 +24,7 @@ export class Game {
     
     constructor() {
         this.resourceLoader = new ResourceLoader([]);
+        this.worldLoader = new WorldLoader([]);
         this.stats = new Stats();
 
         this.renderer = new Renderer();
@@ -31,51 +37,40 @@ export class Game {
         adjustResolution(new Vec2(800, 600));
     }
 
-    loadResources = () => {
-        this.resourceLoader.push({
-            key: 'vim',
-            source: '/vim.png',
-            isCritical: false,
-            resourceBlob: new Blob(),
-            hasLoaded: false,
-            size: new Vec2(16,16),
-        })
-
-        this.resourceLoader.push({
-            key: 'pokemon',
-            source: '/pokemon.png',
-            isCritical: false,
-            resourceBlob: new Blob(),
-            hasLoaded: false,
-            size: new Vec2(64,64),
-        })
-        
-         
+    loadResources = () => {         
         this.resourceLoader.fetchAllResources();
     }
 
+    appendResources = (resources: Array<Resource>) => {
+        this.resourceLoader.append(resources);
+    }
+
+    appendWorld = (resources: Array<WorldMember>) => {
+        this.worldLoader.append(resources);
+    }
+
+    generateGameObject = (worldMember: WorldMember) => {
+        const [posX, posY, sizeX, sizeY] = Object.values(worldMember.positionalData);
+        const stats = new bStats().fromWorldMemberStats(worldMember.stats);
+        
+        return new bGameObject()
+                        .withResourceLoader(this.resourceLoader)
+                        .withId(worldMember.id)
+                        .withType(worldMember.type as GameObjectTypes)
+                        .withSpriteName(worldMember.spriteName)
+                        .withPositionalData(posX, posY, sizeX, sizeY)
+                        .withStats(stats)
+                        .build();
+    }
+
     loadWorld = () => {
-        const gameObj = new bGameObject()
-                            .withId('player1')
-                            .withType(GameObjectTypes.sprite)
-                            .withResourceLoader(this.resourceLoader)
-                            .withSpriteName('pokemon')
-                            .withPositionalData(0,0,64,64)
-                            .build();
 
-        const gameObj2 = new bGameObject()
-                            .withId('player2')
-                            .withType(GameObjectTypes.sprite)
-                            .withResourceLoader(this.resourceLoader)
-                            .withSpriteName('pokemon')
-                            .withPositionalData(100,100,64,64)
-                            .build();
+        this.worldLoader.resourceList.forEach((worldMember : WorldMember) => {
+            const gameObj = this.generateGameObject(worldMember);
 
-        const gameObj3 = new bGameObject()
-                                .withResourceLoader(this.resourceLoader)
-                                .withSpriteName('vim')
-                                .withPositionalData(50,50,64,64)
-                                .build();
+            this.renderer.push(gameObj!);
+        })
+
 
         const fontTest = new bGameObject()
                                 .withType(GameObjectTypes.text)
@@ -83,16 +78,6 @@ export class Game {
                                 .withStats(new Stats())
                                 .build();
 
-        const healthBar = new bGameObject()
-                            .withType(GameObjectTypes.healthBar)
-                            .withPositionalData(200,200,64,64)
-                            .withStats(new Stats())
-                            .build();
-
-        this.renderer.push(gameObj3!);
-        this.renderer.push(gameObj2!);
-        this.renderer.push(gameObj!);
-        this.renderer.push(healthBar);
         this.renderer.push(fontTest);
     }
 

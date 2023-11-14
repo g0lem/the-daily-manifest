@@ -1,7 +1,7 @@
 
 
 export enum GameObjectTypes {
-    sprite,
-    healthBar,
-    text,
+    sprite = "SPRITE",
+    healthBar = "HEALTHBAR",
+    text = "TEXT",
 }

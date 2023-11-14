@@ -37,7 +37,6 @@ export class GameObject implements iRenderableObject {
         console.log('hover');
     }
 
-
     onScroll = () => {
         console.log('scroll');
     }
