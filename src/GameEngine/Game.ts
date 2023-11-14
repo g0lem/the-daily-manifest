@@ -5,7 +5,6 @@ import { EventController } from "./controllers/EventController";
 import { ResourceLoader } from "./loaders/ResourceLoader";
 import { HealthBar } from "./renderer/HealthBar";
 import { Renderer } from "./renderer/Renderer";
-import { Text } from "./renderer/primitives/Text";
 import { Vec2 } from "./utils/Vec2";
 import { adjustResolution, getContext } from "./utils/canvas"
 import { GameObjectTypes } from "./utils/constants";
