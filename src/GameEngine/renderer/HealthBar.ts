@@ -1,23 +1,30 @@
-import { Stats } from "../RPGEngine/Stats";
-import { RenderableObject } from "./RenderableObject";
-import { Vec2 } from "./utils/Vec2";
-import { getContext } from "./utils/canvas";
+import { Stats } from "../../RPGEngine/Stats";
+import { iRenderableObject } from "./primitives/iRenderableObject";
+import { Vec2 } from "../utils/Vec2";
+import { getContext } from "../utils/canvas";
+import { Id } from "../utils/Id";
 
 
-export class HealthBar implements RenderableObject {
+export class HealthBar implements iRenderableObject {
+    public id : Id;
+
     public position: Vec2;
     public size: Vec2;
 
     public stats : Stats;
 
-    constructor(stats: Stats) {
+    constructor(id:string, stats: Stats) {
+        this.id = new Id(id);
         this.position = new Vec2(10,300);
 
-        this.size = (new Vec2(50, 5)).scale(20);
+        this.size = (new Vec2(50, 5));
 
         this.stats = stats;
     }
 
+    onClick = () => { console.log('click')};
+    onHover = () => {};
+    onScroll = () => {};
 
     render() {
         const context = getContext();

@@ -1,16 +1,16 @@
-import { Entities } from "../Entities";
+import { Renderer } from "../renderer/Renderer";
 import { Vec2 } from "../utils/Vec2";
 import { getCanvasHTMLElement } from "../utils/canvas";
 
 
 export class EventController {
-    private entities : Entities;
-    constructor(entities : Entities) {
+    private renderer : Renderer;
+    constructor(renderer : Renderer) {
         const canvasElement = getCanvasHTMLElement();
         canvasElement.addEventListener('mousedown', this.handleClick)
         canvasElement.addEventListener('mousemove', this.handleHover)
         canvasElement.addEventListener('wheel', this.handleScroll);
-        this.entities = entities;
+        this.renderer = renderer;
     }
 
     findEntityByMousePosition (mouseEvent: MouseEvent) {
@@ -21,14 +21,14 @@ export class EventController {
 
         const mousePosition : Vec2 = new Vec2(clientX, clientY);
 
-        return this.entities.findByCoords(mousePosition)!;
+        return this.renderer.findByCoords(mousePosition)!;
     }
 
     handleClick = (mouseEvent: MouseEvent) => {
         const foundEntity = this.findEntityByMousePosition(mouseEvent);
 
         if(foundEntity) {
-            foundEntity.onClick();
+            foundEntity!.onClick();
         }
     }
 
@@ -36,7 +36,7 @@ export class EventController {
         const foundEntity = this.findEntityByMousePosition(mouseEvent);
 
         if(foundEntity) {
-            foundEntity.onHover();
+            foundEntity!.onHover();
         }
     }
 
@@ -44,12 +44,14 @@ export class EventController {
         const foundEntity = this.findEntityByMousePosition(mouseEvent);
 
         if(foundEntity) {
-            foundEntity.onScroll();
+            foundEntity!.onScroll();
         }
     }
 
     destroy() {
         const canvasElement = getCanvasHTMLElement();
         canvasElement.removeEventListener('mousedown', this.handleClick)
+        canvasElement.removeEventListener('mousemove', this.handleHover)
+        canvasElement.removeEventListener('wheel', this.handleScroll);
     }
 }
