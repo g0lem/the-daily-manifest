@@ -1,4 +1,4 @@
-import { Stats } from "../RPGEngine/Stats";
+import { Stats } from "./utils/Stats";
 import { bGameObject } from "./builders/bGameObject";
 import { EventController } from "./controllers/EventController";
 import { ResourceLoader } from "./managers/ResourceLoader";

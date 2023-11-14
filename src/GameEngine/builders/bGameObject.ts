@@ -1,4 +1,4 @@
-import { Stats } from "../../RPGEngine/Stats";
+import { Stats } from "../utils/Stats";
 import { PositionalData } from "../composables/PositionalData";
 import { ResourceLoader } from "../managers/ResourceLoader";
 import { Animation } from "../renderer/Animation";
