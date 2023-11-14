@@ -2,10 +2,8 @@ import { Stats } from "../../RPGEngine/Stats";
 import { PositionalData } from "../composables/PositionalData";
 import { ResourceLoader } from "../managers/ResourceLoader";
 import { GameObject } from "../renderer/GameObject";
-import { PlayerObject } from "../renderer/PlayerObject";
 import { Sprite } from "../renderer/primitives/Sprite";
 import { Id } from "../utils/Id";
-import { Vec2 } from "../utils/Vec2";
 import { GameObjectTypes } from "../utils/constants";
 
 export class bGameObject {
@@ -13,7 +11,6 @@ export class bGameObject {
     private id : Id = new Id('');
 
     private spriteName: string = '';
-    private position: Vec2 = new Vec2(0,0);
     private resourceLoader: ResourceLoader = new ResourceLoader([]);
 
     private stats: Stats = new Stats();
@@ -47,11 +44,6 @@ export class bGameObject {
         return this;
     }
 
-    withPosition = (position: Vec2) => {
-        this.position = position;
-
-        return this;
-    }
 
     withId = (id: string) => {
         this.id = new Id(id);

@@ -62,7 +62,7 @@ export class Game {
                             .withType(GameObjectTypes.player)
                             .withResourceLoader(this.resourceLoader)
                             .withSpriteName('pokemon')
-                            .withPosition(new Vec2(0,0))
+                            .withPositionalData(0,0,64,64)
                             .build();
 
                             console.log(gameObj)
@@ -72,13 +72,13 @@ export class Game {
                             .withType(GameObjectTypes.player)
                             .withResourceLoader(this.resourceLoader)
                             .withSpriteName('pokemon')
-                            .withPosition(new Vec2(100,100))
+                            .withPositionalData(100,100,64,64)
                             .build();
 
         const gameObj3 = new bGameObject()
                                 .withResourceLoader(this.resourceLoader)
                                 .withSpriteName('vim')
-                                .withPosition(new Vec2(50,50))
+                                .withPositionalData(50,50,64,64)
                                 .build();
 
         const healthBar = new HealthBar('health-bar', this.stats);
