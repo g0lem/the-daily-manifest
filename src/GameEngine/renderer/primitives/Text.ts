@@ -7,6 +7,8 @@ import { Id } from "../../utils/Id";
 export class Text implements iRenderableObject {
     public id : Id;
 
+    public visible = true;
+
     public position : Vec2;
     public text : string;
     public size : Vec2 = new Vec2(30, 300);

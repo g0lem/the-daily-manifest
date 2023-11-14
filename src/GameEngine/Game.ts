@@ -65,6 +65,8 @@ export class Game {
                             .withPosition(new Vec2(0,0))
                             .build();
 
+                            console.log(gameObj)
+
         const gameObj2 = new bGameObject()
                             .withId('player2')
                             .withType(GameObjectTypes.player)

@@ -10,4 +10,5 @@ export interface iRenderableObject {
     position: Vec2;
     size: Vec2;
     id: Id;
+    visible: boolean;
 }

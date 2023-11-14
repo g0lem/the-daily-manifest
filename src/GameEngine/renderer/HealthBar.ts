@@ -11,6 +11,8 @@ export class HealthBar implements iRenderableObject {
     public position: Vec2;
     public size: Vec2;
 
+    public visible = true;
+
     public stats : Stats;
 
     constructor(id:string, stats: Stats) {

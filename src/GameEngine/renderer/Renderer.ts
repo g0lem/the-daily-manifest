@@ -1,6 +1,7 @@
 import { iRenderableObject } from "./primitives/iRenderableObject";
 import { Vec2 } from "../utils/Vec2";
 
+type RendererFindFunction = (gameObject: iRenderableObject) => boolean;
 
 export class Renderer {
     public gameObjects : Array<iRenderableObject> = [];
@@ -18,6 +19,10 @@ export class Renderer {
 
     override = (newArray : Array<iRenderableObject>)=> {
         this.gameObjects = newArray;
+    }
+
+    find = (findFunction : RendererFindFunction) => {
+        return this.gameObjects.find(findFunction);
     }
 
     findByCoords(coords: Vec2) {

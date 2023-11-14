@@ -9,6 +9,8 @@ export class GameObject implements iRenderableObject {
     public position: Vec2;
     public size = new Vec2(64,64);
 
+    public visible = true;
+
     public id : Id;
 
     constructor(id: Id, sprite: Sprite, position: Vec2) {
