@@ -1,9 +1,7 @@
 import { Stats } from "../RPGEngine/Stats";
 import { bGameObject } from "./builders/bGameObject";
-import { bText } from "./builders/bText";
 import { EventController } from "./controllers/EventController";
 import { ResourceLoader } from "./managers/ResourceLoader";
-import { HealthBar } from "./renderer/HealthBar";
 import { Renderer } from "./renderer/Renderer";
 import { Vec2 } from "./utils/Vec2";
 import { adjustResolution, getContext } from "./utils/canvas"
@@ -59,17 +57,15 @@ export class Game {
     loadWorld = () => {
         const gameObj = new bGameObject()
                             .withId('player1')
-                            .withType(GameObjectTypes.player)
+                            .withType(GameObjectTypes.sprite)
                             .withResourceLoader(this.resourceLoader)
                             .withSpriteName('pokemon')
                             .withPositionalData(0,0,64,64)
                             .build();
 
-                            console.log(gameObj)
-
         const gameObj2 = new bGameObject()
                             .withId('player2')
-                            .withType(GameObjectTypes.player)
+                            .withType(GameObjectTypes.sprite)
                             .withResourceLoader(this.resourceLoader)
                             .withSpriteName('pokemon')
                             .withPositionalData(100,100,64,64)
@@ -81,12 +77,16 @@ export class Game {
                                 .withPositionalData(50,50,64,64)
                                 .build();
 
-        const healthBar = new HealthBar('health-bar', this.stats);
-        const fontTest = new bText()
-                            .withId('text')
-                            .withPositionalData(200,200, 15,15)
-                            .withText('ello')
-                            .withFont('Brush Script MT, cursive')
+        const fontTest = new bGameObject()
+                                .withType(GameObjectTypes.text)
+                                .withPositionalData(300,300,64,64)
+                                .withStats(new Stats())
+                                .build();
+
+        const healthBar = new bGameObject()
+                            .withType(GameObjectTypes.healthBar)
+                            .withPositionalData(200,200,64,64)
+                            .withStats(new Stats())
                             .build();
 
         this.renderer.push(gameObj3!);

@@ -1,21 +1,28 @@
 import { iRenderableObject } from "./primitives/iRenderableObject";
-import { Sprite } from "./primitives/Sprite";
 import { Id } from "../utils/Id";
 import { PositionalData } from "../composables/PositionalData";
+import { Entity } from "./Entity";
+import { iRenderableData } from "./renderables/iRenderableData";
 
 
 export class GameObject implements iRenderableObject {
-    public sprite: Sprite;
     public positionalData: PositionalData;
+
+    public renderableData : iRenderableData;
 
     public visible = true;
 
     public id : Id;
 
-    constructor(id: Id, sprite: Sprite, positionalData: PositionalData) {
+    public entity : Entity;
+
+    constructor(id: Id, renderableData: iRenderableData, positionalData: PositionalData) {
+
+        this.entity = new Entity(id, positionalData);
+
         this.id = id;
 
-        this.sprite = sprite;
+        this.renderableData = renderableData;
         this.positionalData = positionalData;
     }
 
@@ -36,9 +43,6 @@ export class GameObject implements iRenderableObject {
     }
 
     render() {
-        if(!this.sprite) {
-            return;
-        }
-        this.sprite.render(this.positionalData.getPosition());
+        this.renderableData.render(this.entity);
     }
 }

@@ -27,8 +27,8 @@ export class Renderer {
 
     findByCoords(coords: Vec2) {
         return this.gameObjects.find((gameObject: iRenderableObject) => {
-            const position: Vec2 = gameObject.positionalData.getPosition();
-            const size = gameObject.positionalData.getSize();
+            const position: Vec2 = gameObject.entity.positionalData.getPosition();
+            const size = gameObject.entity.positionalData.getSize();
             return coords.isContained(position, size);
         })
     }

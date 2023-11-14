@@ -1,6 +1,7 @@
 
 
 export enum GameObjectTypes {
-    default,
-    player,
+    sprite,
+    healthBar,
+    text,
 }
