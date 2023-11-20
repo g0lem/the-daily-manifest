@@ -12,17 +12,12 @@ import { Vec2 } from "../utils/Vec2";
 import { GameObjectTypes } from "../utils/constants";
 
 export class bGameObject {
-    
-    private id : Id = new Id('');
-
     private spriteName: string = '';
     private resourceLoader: ResourceLoader = new ResourceLoader([]);
 
-    private stats: Stats = new Stats();
-
     private type : GameObjectTypes = GameObjectTypes.sprite;
 
-    private positionalData: PositionalData = new PositionalData(0,0,0,0);
+    private gameObj = new GameObject();
 
     constructor() {
     }
@@ -33,7 +28,7 @@ export class bGameObject {
     }
 
     withStats = (stats: Stats) => {
-        this.stats = stats;
+        this.gameObj.setStats(stats);
         return this;
     }
 
@@ -51,13 +46,15 @@ export class bGameObject {
 
 
     withId = (id: string) => {
-        this.id = new Id(id);
+        const newId = new Id(id);
+
+        this.gameObj.setId(newId);
         return this;
     }
 
     withPositionalData = (posX: number, posY: number, sizeX: number, sizeY: number) => {
-        this.positionalData = new PositionalData(posX,posY, sizeX, sizeY);
-
+        const positionalData = new PositionalData(posX,posY, sizeX, sizeY);
+        this.gameObj.setPositionalData(positionalData);
         return this;
     }
 
@@ -75,16 +72,19 @@ export class bGameObject {
         switch(this.type) {
             case GameObjectTypes.healthBar: 
                 const healthBarRender = new HealthBarRender();
-                return new GameObject(this.id, healthBarRender, this.positionalData, this.stats);
+                this.gameObj.setRenderableData(healthBarRender);
+                return this.gameObj;
             case GameObjectTypes.text: 
                 const textRender = new TextRender();
-                return new GameObject(this.id, textRender, this.positionalData, this.stats);
+                this.gameObj.setRenderableData(textRender);
+                return this.gameObj;
             case GameObjectTypes.sprite: 
             default: 
                 const sprite = this.generateSprite();
                 const animation = new Animation(new Vec2(0,0), new Vec2(0,0));
                 const renderData = new SpriteRender(sprite!, animation);
-                return new GameObject(this.id, renderData, this.positionalData, this.stats);
+                this.gameObj.setRenderableData(renderData);
+                return this.gameObj;
         }
         
     }

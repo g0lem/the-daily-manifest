@@ -4,28 +4,34 @@ import { PositionalData } from "../composables/PositionalData";
 import { Entity } from "./Entity";
 import { iRenderableData } from "./renderables/iRenderableData";
 import { Stats } from "../utils/Stats";
+import { TextRender } from "./renderables/TextRender";
 
 
 export class GameObject implements iRenderableObject {
-    public positionalData: PositionalData;
 
-    public renderableData : iRenderableData;
+    public renderableData : iRenderableData = new TextRender();
 
     public visible = true;
 
-    public id : Id;
+    public entity : Entity = new Entity();
 
-    public entity : Entity;
-
-    constructor(id: Id, renderableData: iRenderableData, positionalData: PositionalData, stats: Stats) {
-
-        this.entity = new Entity(id, positionalData, stats);
-
-        this.id = id;
-
-        this.renderableData = renderableData;
-        this.positionalData = positionalData;
+    constructor() {
     }
+
+    setStats = (stats: Stats) => this.entity.setStats(stats);
+
+
+    setId = (id: Id) => this.entity.setId(id);
+
+    
+    setRenderableData = 
+        (renderableData: iRenderableData) => this.renderableData = renderableData;
+    
+
+    setVisible = (visible: boolean) => this.visible = visible;
+
+    setPositionalData = 
+        (positionalData: PositionalData) => this.entity.setPositionalData(positionalData);
 
     listenForKeyPresses = () => {
     }
@@ -43,6 +49,6 @@ export class GameObject implements iRenderableObject {
     }
 
     render() {
-        this.renderableData.render(this.entity);
+        this.renderableData.render(this.entity!);
     }
 }
