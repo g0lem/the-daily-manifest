@@ -1,6 +1,5 @@
-import { Stats } from "./utils/Stats";
 import { bGameObject } from "./builders/bGameObject";
-import { EventController } from "./controllers/EventController";
+import { InputController } from "./controllers/InputController";
 import { ResourceLoader } from "./managers/ResourceLoader";
 import { Renderer } from "./renderer/Renderer";
 import { Vec2 } from "./utils/Vec2";
@@ -17,18 +16,16 @@ export class Game {
     private resourceLoader : ResourceLoader;
     private worldLoader : WorldLoader;
 
-    private stats : Stats;
     private renderer : Renderer;
     private context : CanvasRenderingContext2D;
-    private eventController: EventController;
+    private inputController: InputController;
     
     constructor() {
         this.resourceLoader = new ResourceLoader([]);
         this.worldLoader = new WorldLoader([]);
-        this.stats = new Stats();
 
         this.renderer = new Renderer();
-        this.eventController = new EventController(this.renderer);
+        this.inputController = new InputController(this.renderer);
 
         this.context = getContext();
     }
@@ -64,21 +61,11 @@ export class Game {
     }
 
     loadWorld = () => {
-
         this.worldLoader.resourceList.forEach((worldMember : WorldMember) => {
             const gameObj = this.generateGameObject(worldMember);
 
             this.renderer.push(gameObj!);
         })
-
-
-        const fontTest = new bGameObject()
-                                .withType(GameObjectTypes.text)
-                                .withPositionalData(300,300,64,64)
-                                .withStats(new Stats())
-                                .build();
-
-        this.renderer.push(fontTest);
     }
 
     drawWorld = () => {
@@ -91,7 +78,7 @@ export class Game {
     }
 
     run = () => {
-        window.addEventListener("beforeunload", ()=>this.eventController.destroy());
+        window.addEventListener("beforeunload", ()=>this.inputController.destroy());
         setInterval(()=> {
             this.drawWorld();
         },1)

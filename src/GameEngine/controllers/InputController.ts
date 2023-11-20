@@ -3,7 +3,7 @@ import { KeyPressController } from "./KeyPressController";
 import { MouseController } from "./MouseController";
 
 
-export class EventController {
+export class InputController {
     private mouseController : MouseController;
     private keyPressController : KeyPressController;
     private renderer : Renderer;
