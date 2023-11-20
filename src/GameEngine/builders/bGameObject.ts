@@ -75,16 +75,16 @@ export class bGameObject {
         switch(this.type) {
             case GameObjectTypes.healthBar: 
                 const healthBarRender = new HealthBarRender();
-                return new GameObject(this.id, healthBarRender, this.positionalData);
+                return new GameObject(this.id, healthBarRender, this.positionalData, this.stats);
             case GameObjectTypes.text: 
                 const textRender = new TextRender();
-                return new GameObject(this.id, textRender, this.positionalData);
+                return new GameObject(this.id, textRender, this.positionalData, this.stats);
             case GameObjectTypes.sprite: 
             default: 
                 const sprite = this.generateSprite();
                 const animation = new Animation(new Vec2(0,0), new Vec2(0,0));
                 const renderData = new SpriteRender(sprite!, animation);
-                return new GameObject(this.id, renderData, this.positionalData);
+                return new GameObject(this.id, renderData, this.positionalData, this.stats);
         }
         
     }

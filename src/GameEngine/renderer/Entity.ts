@@ -12,9 +12,10 @@ export class Entity {
     public stats: Stats = new Stats();
 
 
-    constructor(id: Id,  positionalData: PositionalData) {
+    constructor(id: Id,  positionalData: PositionalData, stats: Stats) {
         this.id = id;
         this.positionalData = positionalData;
+        this.stats = stats;
     }
 
 

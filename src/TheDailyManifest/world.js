@@ -60,8 +60,8 @@ export const world = [
         stats: {
             health: 100,
             maxHealth: 100,
-            font: 'Arial',
-            text: 'pula',
+            font: 'Brush Script MT, cursive',
+            text: 'test',
         }
     },
 ]
