@@ -26,10 +26,17 @@ export class Renderer {
     }
 
     findByCoords(coords: Vec2) {
-        return this.gameObjects.find((gameObject: iRenderableObject) => {
+        return this.find((gameObject: iRenderableObject) => {
             const position: Vec2 = gameObject.entity.positionalData.getPosition();
             const size = gameObject.entity.positionalData.getSize();
             return coords.isContained(position, size);
+        })
+    }
+
+    findById(id: string) {
+        return this.find((gameObject: iRenderableObject) => {
+            const { entity } = gameObject;
+            return entity.id.hasId(id);
         })
     }
 

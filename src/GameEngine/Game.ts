@@ -8,6 +8,8 @@ import { GameObjectTypes } from "./utils/constants";
 import { Resource } from "./managers/Resource";
 import { WorldLoader, WorldMember } from "./managers/WorldLoader";
 import { bStats } from "./builders/bStats";
+import { EventController } from "./controllers/EventController";
+import { Events } from "./Events";
 
 
 
@@ -15,6 +17,7 @@ export class Game {
 
     private resourceLoader : ResourceLoader;
     private worldLoader : WorldLoader;
+    private eventController: EventController;
 
     private renderer : Renderer;
     private context : CanvasRenderingContext2D;
@@ -26,6 +29,8 @@ export class Game {
 
         this.renderer = new Renderer();
         this.inputController = new InputController(this.renderer);
+
+        this.eventController = new EventController(this.renderer);
 
         this.context = getContext();
     }
@@ -44,6 +49,10 @@ export class Game {
 
     appendWorld = (resources: Array<WorldMember>) => {
         this.worldLoader.append(resources);
+    }
+
+    appendEvents = (resources: Array<Events>) => {
+        this.eventController.append(resources);
     }
 
     generateGameObject = (worldMember: WorldMember) => {

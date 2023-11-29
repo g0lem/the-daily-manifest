@@ -1,5 +1,5 @@
 import { Game } from "./GameEngine/Game";
-import { resources, world } from './TheDailyManifest';
+import { resources, world, events } from './TheDailyManifest';
 
 const game = new Game();
 
@@ -9,5 +9,7 @@ game.loadResources();
 
 game.appendWorld(world);
 game.loadWorld();
+
+game.appendEvents(events);
 
 game.run();

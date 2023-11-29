@@ -38,6 +38,11 @@ export class GameObject implements iRenderableObject {
 
     onClick = () => {
         console.log('click');
+        const event = new Event("moveUp");
+
+        const element = document.body;
+
+        element.dispatchEvent(event);
     }
 
     onHover = () => {
