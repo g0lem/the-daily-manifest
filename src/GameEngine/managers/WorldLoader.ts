@@ -1,3 +1,8 @@
+import { bGameObject } from "../builders/bGameObject";
+import { bStats } from "../builders/bStats";
+import { Renderer } from "../renderer/Renderer";
+import { GameObjectTypes } from "../utils/constants";
+import { ResourceLoader } from "./ResourceLoader";
 
 
 export type WorldMemberStats = {
@@ -46,5 +51,27 @@ export class WorldLoader {
 
     setScene = (sceneId : string) => {
         this.sceneId = sceneId;
+    }
+
+    generateGameObject = (resourceLoader: ResourceLoader, worldMember: WorldMember) => {
+        const [posX, posY, sizeX, sizeY] = Object.values(worldMember.positionalData);
+        const stats = new bStats().fromWorldMemberStats(worldMember.stats);
+        
+        return new bGameObject()
+                        .withResourceLoader(resourceLoader)
+                        .withId(worldMember.id)
+                        .withType(worldMember.type as GameObjectTypes)
+                        .withSpriteName(worldMember.spriteName)
+                        .withPositionalData(posX, posY, sizeX, sizeY)
+                        .withStats(stats)
+                        .build();
+    }
+
+    loadWorld = (renderer: Renderer, resourceLoader: ResourceLoader) => {
+        this.getCurrentScene()!.forEach((worldMember : WorldMember) => {
+            const gameObj = this.generateGameObject(resourceLoader, worldMember);
+
+            renderer.push(gameObj!);
+        })
     }
 }

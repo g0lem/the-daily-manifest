@@ -1,4 +1,5 @@
 import { Animation } from "../Animation";
+import { Camera } from "../Camera";
 import { Entity } from "../Entity";
 import { Sprite } from "../primitives/Sprite";
 import { iRenderableData } from "./iRenderableData";
@@ -15,11 +16,13 @@ export class SpriteRender implements iRenderableData {
         this.animation = animation;
     }
 
-    render(entity:Entity) {
+    render(entity:Entity, camera: Camera) {
         if(!this.sprite) {
             return;
         }
-        this.sprite.render(entity.positionalData.getPosition());
+        const positionalData = entity.positionalData.getPosition().copy();
+
+        this.sprite.render(positionalData.sub(camera.getPosition())!);
     }
 
 }

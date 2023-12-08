@@ -4,12 +4,11 @@ import { ResourceLoader } from "./managers/ResourceLoader";
 import { Renderer } from "./renderer/Renderer";
 import { Vec2 } from "./utils/Vec2";
 import { adjustResolution, getContext } from "./utils/canvas"
-import { GameObjectTypes } from "./utils/constants";
 import { Resource } from "./managers/Resource";
-import { Scene, SceneMap, WorldLoader, WorldMember } from "./managers/WorldLoader";
-import { bStats } from "./builders/bStats";
+import { Scene, WorldLoader } from "./managers/WorldLoader";
 import { EventController } from "./controllers/EventController";
 import { Events } from "./Events";
+import { Camera } from "./renderer/Camera";
 
 
 
@@ -22,12 +21,15 @@ export class Game {
     private renderer : Renderer;
     private context : CanvasRenderingContext2D;
     private inputController: InputController;
+
+    private camera: Camera;
     
     constructor() {
+        this.camera = new Camera(0, 0,800,600);
         this.resourceLoader = new ResourceLoader([]);
         this.worldLoader = new WorldLoader(new Map());
 
-        this.renderer = new Renderer();
+        this.renderer = new Renderer(this.camera);
         this.inputController = new InputController(this.renderer);
 
         this.eventController = new EventController(this.renderer);
@@ -36,7 +38,7 @@ export class Game {
     }
 
     canvasSetup = () => {
-        adjustResolution(new Vec2(800, 600));
+        adjustResolution(this.camera.getSize());
     }
 
     loadResources = () => {         
@@ -54,33 +56,15 @@ export class Game {
     }
 
     appendWorld = (sceneId: string, resources: Scene) => {
-        this.worldLoader.set(sceneId,resources);
+        this.worldLoader.set(sceneId, resources);
     }
 
     appendEvents = (resources: Array<Events>) => {
         this.eventController.append(resources);
     }
 
-    generateGameObject = (worldMember: WorldMember) => {
-        const [posX, posY, sizeX, sizeY] = Object.values(worldMember.positionalData);
-        const stats = new bStats().fromWorldMemberStats(worldMember.stats);
-        
-        return new bGameObject()
-                        .withResourceLoader(this.resourceLoader)
-                        .withId(worldMember.id)
-                        .withType(worldMember.type as GameObjectTypes)
-                        .withSpriteName(worldMember.spriteName)
-                        .withPositionalData(posX, posY, sizeX, sizeY)
-                        .withStats(stats)
-                        .build();
-    }
-
     loadWorld = () => {
-        this.worldLoader.getCurrentScene()!.forEach((worldMember : WorldMember) => {
-            const gameObj = this.generateGameObject(worldMember);
-
-            this.renderer.push(gameObj!);
-        })
+        this.worldLoader.loadWorld(this.renderer, this.resourceLoader);
     }
 
     drawWorld = () => {

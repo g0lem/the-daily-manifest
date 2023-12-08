@@ -1,4 +1,5 @@
 import { Animation } from "../Animation";
+import { Camera } from "../Camera";
 import { Entity } from "../Entity";
 import { Sprite } from "../primitives/Sprite";
 
@@ -8,5 +9,5 @@ export interface iRenderableData {
     animation?: Animation;
 
 
-    render: (entity: Entity) => void;
+    render: (entity: Entity, camera: Camera) => void;
 }

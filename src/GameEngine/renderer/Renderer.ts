@@ -1,12 +1,16 @@
 import { iRenderableObject } from "./primitives/iRenderableObject";
 import { Vec2 } from "../utils/Vec2";
+import { Camera } from "./Camera";
 
 type RendererFindFunction = (gameObject: iRenderableObject) => boolean;
 
 export class Renderer {
     public gameObjects : Array<iRenderableObject> = [];
-    constructor() {
 
+    private camera: Camera;
+
+    constructor(camera: Camera) {
+        this.camera = camera;
     }
 
     push(gameObject: iRenderableObject) {
@@ -43,7 +47,7 @@ export class Renderer {
 
     render() {
         this.gameObjects.forEach((gameObject: iRenderableObject) => {
-            gameObject.render();
+            gameObject.render(this.camera);
         })
     }
 

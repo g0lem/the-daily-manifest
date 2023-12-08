@@ -5,6 +5,7 @@ import { Entity } from "./Entity";
 import { iRenderableData } from "./renderables/iRenderableData";
 import { Stats } from "../utils/Stats";
 import { TextRender } from "./renderables/TextRender";
+import { Camera } from "./Camera";
 
 
 export class GameObject implements iRenderableObject {
@@ -53,7 +54,7 @@ export class GameObject implements iRenderableObject {
         console.log('scroll');
     }
 
-    render() {
-        this.renderableData.render(this.entity!);
+    render(camera: Camera) {
+        this.renderableData.render(this.entity!, camera!);
     }
 }
