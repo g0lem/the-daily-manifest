@@ -1,3 +1,4 @@
+import { WorldLoader } from "../managers/WorldLoader";
 import { GameObject } from "../renderer/GameObject";
 import { Renderer } from "../renderer/Renderer";
 import { iRenderableObject } from "../renderer/primitives/iRenderableObject";

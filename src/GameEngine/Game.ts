@@ -43,6 +43,12 @@ export class Game {
         this.resourceLoader.fetchAllResources();
     }
 
+    changeScene = (sceneId: string) => {
+        this.renderer.clear();
+        this.worldLoader.setScene(sceneId);
+        this.loadWorld();
+    }
+
     appendResources = (resources: Array<Resource>) => {
         this.resourceLoader.append(resources);
     }

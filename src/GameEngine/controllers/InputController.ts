@@ -1,3 +1,4 @@
+import { WorldLoader } from "../managers/WorldLoader";
 import { Renderer } from "../renderer/Renderer";
 import { KeyPressController } from "./KeyPressController";
 import { MouseController } from "./MouseController";
