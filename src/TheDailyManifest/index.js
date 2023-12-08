@@ -1,5 +1,5 @@
 export { resources } from "./resources";
 
-export { world } from './world';
+export { world, world2 } from './world';
 
 export { events } from './events';

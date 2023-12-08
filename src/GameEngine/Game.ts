@@ -6,7 +6,7 @@ import { Vec2 } from "./utils/Vec2";
 import { adjustResolution, getContext } from "./utils/canvas"
 import { GameObjectTypes } from "./utils/constants";
 import { Resource } from "./managers/Resource";
-import { WorldLoader, WorldMember } from "./managers/WorldLoader";
+import { Scene, SceneMap, WorldLoader, WorldMember } from "./managers/WorldLoader";
 import { bStats } from "./builders/bStats";
 import { EventController } from "./controllers/EventController";
 import { Events } from "./Events";
@@ -25,7 +25,7 @@ export class Game {
     
     constructor() {
         this.resourceLoader = new ResourceLoader([]);
-        this.worldLoader = new WorldLoader([]);
+        this.worldLoader = new WorldLoader(new Map());
 
         this.renderer = new Renderer();
         this.inputController = new InputController(this.renderer);
@@ -47,8 +47,8 @@ export class Game {
         this.resourceLoader.append(resources);
     }
 
-    appendWorld = (resources: Array<WorldMember>) => {
-        this.worldLoader.append(resources);
+    appendWorld = (sceneId: string, resources: Scene) => {
+        this.worldLoader.set(sceneId,resources);
     }
 
     appendEvents = (resources: Array<Events>) => {
@@ -70,7 +70,7 @@ export class Game {
     }
 
     loadWorld = () => {
-        this.worldLoader.resourceList.forEach((worldMember : WorldMember) => {
+        this.worldLoader.getCurrentScene()!.forEach((worldMember : WorldMember) => {
             const gameObj = this.generateGameObject(worldMember);
 
             this.renderer.push(gameObj!);

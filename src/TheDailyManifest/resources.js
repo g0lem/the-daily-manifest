@@ -13,8 +13,8 @@ export const resources = [
         },
     },
     {
-        key: 'pokemon',
-        source: '/pokemon.png',
+        key: 'sprite',
+        source: '/sprite.png',
         isCritical: false,
         resourceBlob: new Blob(),
         hasLoaded: false,

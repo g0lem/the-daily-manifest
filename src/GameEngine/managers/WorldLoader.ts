@@ -24,20 +24,27 @@ export type WorldMember = {
     stats: WorldMemberStats,
 }
 
+export type Scene = Array<WorldMember>;
 
+export type SceneMap = Map<string, Scene>;
 
 export class WorldLoader {
-    public resourceList: Array<WorldMember> = [];
+    public scenes: SceneMap = new Map();
+    public sceneId: string = 'scene1';
 
-    constructor(resourceList : Array<WorldMember>) {
-        this.resourceList = resourceList;
+    constructor(resourceList : SceneMap) {
+        this.scenes = resourceList;
     }
 
+    set = (sceneId: string, scene: Scene) => {
+        this.scenes!.set(sceneId, scene);
+    }
 
-    append = (array: Array<WorldMember> ) => {
-        this.resourceList = [
-            ...this.resourceList,
-            ...array,
-        ];
+    getCurrentScene = () => {
+        return this.scenes!.get(this.sceneId);
+    }
+
+    setScene = (sceneId : string) => {
+        this.sceneId = sceneId;
     }
 }

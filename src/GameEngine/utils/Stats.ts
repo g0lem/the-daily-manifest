@@ -35,4 +35,6 @@ export class Stats {
         return this.health <= 0;
     }
 
+    public setText = (text: string) => this.text = text;
+
 };
