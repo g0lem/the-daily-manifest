@@ -15,11 +15,11 @@ export class MouseController {
 
     findEntityByMousePosition (mouseEvent: MouseEvent) {
         const {
-            clientX,
-            clientY,
+            layerX,
+            layerY,
         } = mouseEvent;
 
-        const mousePosition : Vec2 = new Vec2(clientX, clientY);
+        const mousePosition : Vec2 = new Vec2(layerX, layerY);
 
         return this.renderer.findByCoords(mousePosition)!;
     }
@@ -34,6 +34,8 @@ export class MouseController {
 
     handleHover = (mouseEvent: MouseEvent) => {
         const foundEntity = this.findEntityByMousePosition(mouseEvent);
+
+        console.log(mouseEvent)
 
         if(foundEntity) {
             foundEntity!.onHover();

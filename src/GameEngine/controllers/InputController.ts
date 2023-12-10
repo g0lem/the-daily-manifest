@@ -15,9 +15,6 @@ export class InputController {
         this.renderer = renderer;
     }
 
-
-
-
     destroy() {
         this.mouseController.destroy();
     }

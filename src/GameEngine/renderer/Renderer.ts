@@ -30,10 +30,11 @@ export class Renderer {
     }
 
     findByCoords(coords: Vec2) {
+        const adjustedCoords = coords.copy().add(this.camera.getPosition());
         return this.find((gameObject: iRenderableObject) => {
             const position: Vec2 = gameObject.entity.positionalData.getPosition();
             const size = gameObject.entity.positionalData.getSize();
-            return coords.isContained(position, size);
+            return adjustedCoords.isContained(position, size);
         })
     }
 

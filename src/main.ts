@@ -1,5 +1,5 @@
 import { Game } from "./GameEngine/Game";
-import { resources, world2, events } from './TheDailyManifest';
+import { resources, world, events } from './TheDailyManifest';
 
 const game = new Game();
 
@@ -7,8 +7,8 @@ game.canvasSetup();
 game.appendResources(resources);
 game.loadResources();
 
-Object.keys(world2).forEach(key=>{
-    game.appendWorld(key, world2[key]);  
+Object.keys(world).forEach(key=>{
+    game.appendWorld(key, world[key]);  
 })
 
 game.loadWorld();

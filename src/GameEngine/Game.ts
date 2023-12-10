@@ -25,7 +25,7 @@ export class Game {
     private camera: Camera;
     
     constructor() {
-        this.camera = new Camera(0, 0,800,600);
+        this.camera = new Camera(0,0,800,600);
         this.resourceLoader = new ResourceLoader([]);
         this.worldLoader = new WorldLoader(new Map());
 

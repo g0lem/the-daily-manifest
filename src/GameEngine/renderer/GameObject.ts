@@ -47,7 +47,7 @@ export class GameObject implements iRenderableObject {
     }
 
     onHover = () => {
-        console.log('hover');
+        console.log(this.entity.id.getId());
     }
 
     onScroll = () => {

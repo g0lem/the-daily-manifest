@@ -46,8 +46,9 @@ export class Vec2 {
     }
 
     isContained(vectorToCompare: Vec2, sizeVector: Vec2) {
-        const vectCopy = (new Vec2(vectorToCompare.x, vectorToCompare.y)).add(sizeVector);
+        const vectCopy = vectorToCompare.copy().add(sizeVector);
         // vectCopy = vectCopy.add(sizeVector);
+        // console.log(`vectorToCompare: ${vectorToCompare.x} ${vectorToCompare.y}, vectCopy: ${vectCopy.x}, ${vectCopy.y}`)
 
         return this.isBigger(vectorToCompare) && this.isSmaller(vectCopy);
     }

@@ -57,8 +57,4 @@ export class EventController {
 
         event.handler(targetEntity, depEntities);
     }
-
-
-    
-
 }
