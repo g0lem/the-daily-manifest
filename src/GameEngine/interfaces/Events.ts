@@ -1,4 +1,4 @@
-import { iRenderableObject } from "./renderer/primitives/iRenderableObject";
+import { iRenderableObject } from "./iRenderableObject";
 
 export interface Events {
     id: string;

@@ -1,8 +1,8 @@
-import { iRenderableObject } from "./primitives/iRenderableObject";
+import { iRenderableObject } from "./../interfaces/iRenderableObject";
 import { Id } from "../utils/Id";
 import { PositionalData } from "../composables/PositionalData";
 import { Entity } from "./Entity";
-import { iRenderableData } from "./renderables/iRenderableData";
+import { iRenderableData } from "./../interfaces/iRenderableData";
 import { Stats } from "../utils/Stats";
 import { TextRender } from "./renderables/TextRender";
 import { Camera } from "./Camera";

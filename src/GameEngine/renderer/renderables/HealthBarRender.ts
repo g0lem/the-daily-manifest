@@ -1,6 +1,6 @@
 import { getContext } from "../../utils/canvas";
 import { Entity } from "../Entity";
-import { iRenderableData } from "./iRenderableData";
+import { iRenderableData } from "./../../interfaces/iRenderableData";
 
 
 

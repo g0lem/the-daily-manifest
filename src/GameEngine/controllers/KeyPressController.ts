@@ -1,7 +1,7 @@
 import { WorldLoader } from "../managers/WorldLoader";
 import { GameObject } from "../renderer/GameObject";
 import { Renderer } from "../renderer/Renderer";
-import { iRenderableObject } from "../renderer/primitives/iRenderableObject";
+import { iRenderableObject } from "../interfaces/iRenderableObject";
 import { Vec2 } from "../utils/Vec2";
 
 export class KeyPressController {

@@ -2,7 +2,7 @@ import { Animation } from "../Animation";
 import { Camera } from "../Camera";
 import { Entity } from "../Entity";
 import { Sprite } from "../primitives/Sprite";
-import { iRenderableData } from "./iRenderableData";
+import { iRenderableData } from "./../../interfaces/iRenderableData";
 
 
 

@@ -1,6 +1,6 @@
-import { Camera } from "../Camera";
-import { Entity } from "../Entity";
-import { iRenderableData } from "../renderables/iRenderableData";
+import { Camera } from "../renderer/Camera";
+import { Entity } from "../renderer/Entity";
+import { iRenderableData } from "../interfaces/iRenderableData";
 
 export interface iRenderableObject {
     onClick: ()=>void;

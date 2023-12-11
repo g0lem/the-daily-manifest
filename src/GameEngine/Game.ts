@@ -7,7 +7,7 @@ import { adjustResolution, getContext } from "./utils/canvas"
 import { Resource } from "./managers/Resource";
 import { Scene, WorldLoader } from "./managers/WorldLoader";
 import { EventController } from "./controllers/EventController";
-import { Events } from "./Events";
+import { Events } from "./interfaces/Events";
 import { Camera } from "./renderer/Camera";
 
 

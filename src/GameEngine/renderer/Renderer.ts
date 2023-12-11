@@ -1,4 +1,4 @@
-import { iRenderableObject } from "./primitives/iRenderableObject";
+import { iRenderableObject } from "./../interfaces/iRenderableObject";
 import { Vec2 } from "../utils/Vec2";
 import { Camera } from "./Camera";
 
