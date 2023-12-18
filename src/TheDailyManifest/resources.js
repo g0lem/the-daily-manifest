@@ -22,5 +22,16 @@ export const resources = [
             x: 64,
             y: 64,
         },
-    }
+    },
+    {
+        key: 'office',
+        source: '/Office.png',
+        isCritical: false,
+        resourceBlob: new Blob(),
+        hasLoaded: false,
+        size: {
+            x: 160,
+            y: 90,
+        },
+    },
 ]

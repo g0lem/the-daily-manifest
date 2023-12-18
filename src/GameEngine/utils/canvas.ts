@@ -11,4 +11,9 @@ export const adjustResolution : (size : Vec2) => void = (size : Vec2) => {
     element.width = size.x;
     element.height = size.y;
 }
+
+export const adjustScale = () => {
+    const element = getCanvasHTMLElement();
+    element.style.scale = '5';
+}
   

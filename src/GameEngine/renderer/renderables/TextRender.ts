@@ -13,6 +13,7 @@ export class TextRender implements iRenderableData {
 
 
     render(entity: Entity, camera: Camera) {
+        camera.addToPos(0,0);
         const args = entity.positionalData.getThree();
         const context = getContext();
         context.font = entity.generateFontString();

@@ -8,13 +8,15 @@ export class Sprite {
     public size: Vec2;
     public resource: Resource;
     public image: ImageBitmap | null = null;
-    public currentAnimation : Animation = new Animation(new Vec2(0,0), new Vec2(64,64));
+    public currentAnimation : Animation;
 
     public hasLoaded: Boolean = false;
 
     constructor(resource: Resource) {
         this.resource = resource;
         this.size = resource.size;
+
+        this.currentAnimation = new Animation(new Vec2(0,0), this.resource.size);
 
         this.resourceProcessingInterval();
     }

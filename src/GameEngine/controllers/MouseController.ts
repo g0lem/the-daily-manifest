@@ -15,11 +15,11 @@ export class MouseController {
 
     findEntityByMousePosition (mouseEvent: MouseEvent) {
         const {
-            layerX,
-            layerY,
+            offsetX,
+            offsetY,
         } = mouseEvent;
 
-        const mousePosition : Vec2 = new Vec2(layerX, layerY);
+        const mousePosition : Vec2 = new Vec2(offsetX, offsetY);
 
         return this.renderer.findByCoords(mousePosition)!;
     }

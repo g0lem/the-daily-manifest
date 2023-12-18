@@ -1,4 +1,3 @@
-import { WorldLoader } from "../managers/WorldLoader";
 import { GameObject } from "../renderer/GameObject";
 import { Renderer } from "../renderer/Renderer";
 import { iRenderableObject } from "../interfaces/iRenderableObject";
@@ -12,13 +11,13 @@ export class KeyPressController {
 
     constructor(renderer : Renderer) {
         this.renderer = renderer;
+    }
 
-
+    listen = () => {
         this.listenForKeyPress();
         this.listenForKeyRelease();
 
         this.handleInputs();
-        
     }
 
     listenForKeyPress = () => {

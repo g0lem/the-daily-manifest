@@ -3,6 +3,17 @@
 export const world = {
     scene1: [
         {
+            id: 'office',
+            type: 'SPRITE',
+            spriteName: 'office',
+            positionalData: {
+                posX: 0,
+                posY: 0,
+                sizeX: 1800,
+                sizeY: 900,
+            }
+        },
+        {
             id: 'player1',
             type: 'SPRITE',
             spriteName: 'sprite',

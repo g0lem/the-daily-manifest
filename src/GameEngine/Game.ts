@@ -1,9 +1,7 @@
-import { bGameObject } from "./builders/bGameObject";
 import { InputController } from "./controllers/InputController";
 import { ResourceLoader } from "./managers/ResourceLoader";
 import { Renderer } from "./renderer/Renderer";
-import { Vec2 } from "./utils/Vec2";
-import { adjustResolution, getContext } from "./utils/canvas"
+import { adjustResolution, adjustScale, getContext } from "./utils/canvas"
 import { Resource } from "./managers/Resource";
 import { Scene, WorldLoader } from "./managers/WorldLoader";
 import { EventController } from "./controllers/EventController";
@@ -25,7 +23,7 @@ export class Game {
     private camera: Camera;
     
     constructor() {
-        this.camera = new Camera(0,0,800,600);
+        this.camera = new Camera(0,0,160,90);
         this.resourceLoader = new ResourceLoader([]);
         this.worldLoader = new WorldLoader(new Map());
 
@@ -39,6 +37,7 @@ export class Game {
 
     canvasSetup = () => {
         adjustResolution(this.camera.getSize());
+        adjustScale();
     }
 
     loadResources = () => {         

@@ -17,4 +17,4 @@ game.appendEvents(events);
 
 game.run();
 
-window.game = game;
+// window.game = game;
