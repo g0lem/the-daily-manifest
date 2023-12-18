@@ -13,7 +13,13 @@
       background: #fffef0;
       /* v2.1 : borders effect with SVG : try to play with scale to change them */
       filter: url(#wavy2);
-      image-rendering: crisp-edges; 
+      transform-origin: 0 0;
+      image-rendering: optimizeSpeed;             /* Older versions of FF          */
+      image-rendering: -moz-crisp-edges;          /* FF 6.0+                       */
+      image-rendering: -webkit-optimize-contrast; /* Safari                        */
+      image-rendering: -o-crisp-edges;            /* OS X & Windows Opera (12.02+) */
+      image-rendering: pixelated;                 /* Awesome future-browsers       */
+      -ms-interpolation-mode: nearest-neighbor;   /* IE 
       transform-origin: 0 0;
       /* image-rendering: crisp-edges; */
       /* v2.2 : Noise added for a vellum paper effect */

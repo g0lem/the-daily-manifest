@@ -48,6 +48,7 @@ export class Sprite {
 
         this.currentAnimation!.updateFrame();
         const frame = this.currentAnimation!.getFrame();
+
         context.drawImage(
             this.image, 
             frame.currentFramePosition.x, 

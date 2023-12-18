@@ -1,7 +1,7 @@
 import { InputController } from "./controllers/InputController";
 import { ResourceLoader } from "./managers/ResourceLoader";
 import { Renderer } from "./renderer/Renderer";
-import { adjustResolution, adjustScale, getContext } from "./utils/canvas"
+import { adjustContext, adjustResolution, adjustScale, getContext } from "./utils/canvas"
 import { Resource } from "./managers/Resource";
 import { Scene, WorldLoader } from "./managers/WorldLoader";
 import { EventController } from "./controllers/EventController";
@@ -23,7 +23,7 @@ export class Game {
     private camera: Camera;
     
     constructor() {
-        this.camera = new Camera(0,0,160,90);
+        this.camera = new Camera(0,0,800,450);
         this.resourceLoader = new ResourceLoader([]);
         this.worldLoader = new WorldLoader(new Map());
 
@@ -37,7 +37,8 @@ export class Game {
 
     canvasSetup = () => {
         adjustResolution(this.camera.getSize());
-        adjustScale();
+        // adjustScale();
+        adjustContext();
     }
 
     loadResources = () => {         

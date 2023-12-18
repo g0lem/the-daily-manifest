@@ -64,15 +64,15 @@ export const world = {
             id: 'text',
             type: 'TEXT',
             positionalData: {
-                posX: 300,
-                posY: 300,
+                posX: 10,
+                posY: 10,
                 sizeX: 30,
                 sizeY: 30,
             },
             stats: {
                 health: 100,
                 maxHealth: 100,
-                font: 'Brush Script MT, cursive',
+                font: '30px, Arial mono MT',
                 text: 'test',
             }
         },
